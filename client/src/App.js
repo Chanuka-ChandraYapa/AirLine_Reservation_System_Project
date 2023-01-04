@@ -1,64 +1,60 @@
-import './App.css';
-import { useState } from 'react';
-import Axios from 'axios';
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import UpcomingFlights from './Pages/Upcoming_Flight/cards';
+import NavigationBar from './Pages/Navigation_Bar/naviburger';
+import MainFeaturedPost from './Pages/Upcoming_Flight/about';
+import SignIn from './Pages/SignIn_Page/SignInSide';
+import SignUp from './Pages/SignUp_Page/SignUp';
+import Search from './Pages/Search_Page/search';
+import Table from './Pages/Search_Page/Tables';
+import Booking from './Pages/booking/booking';
+import Summary from './Pages/Summary_Page/summary'
+import ErrorPage from './Pages/Error_Page/Error_Page';
+import About from './Pages/About_Page/Aboutpage';
+import Footer from './Pages/footer';
+import Scroller from './Pages/scroll';
+import Home from './Pages/Home_Page/main'
 
-function App() {
-  const [name,setName]=useState("");
-  const [age,setAge]=useState(0);
-  const [country,setCountry]=useState("");
-  const [position,setPosition]=useState("");
-  const [wage,setWage]=useState(0);
 
-  const [employeeList,setEmployeeList]=useState([]);
-
-  const addEmployee=()=>{
-    Axios.post('http://localhost:3001/create',{
-    name:name,
-    age:age,
-    country:country,
-    position:position,
-    wage:wage}).then(()=>{
-    console.log("Success");
-  });
-  };
-
-  const getEmployees=()=>{
-    Axios.get('http://localhost:3001/employees').then((response)=>{
-    setEmployeeList(response.data);
-  });
-  };
-  
-
+function App() { 
   return (
-    <div className="App">
-      <div className="information">
-        <label>Name:</label>
-        <input type="text" onChange={(event)=>{setName(event.target.value)}}></input>
-        <label>Age:</label>
-        <input type="number" onChange={(event)=>{setAge(event.target.value)}}></input>
-        <label>Country:</label>
-        <input type="text" onChange={(event)=>{setCountry(event.target.value)}}></input>
-        <label>Position:</label>
-        <input type="text" onChange={(event)=>{setPosition(event.target.value)}}></input>
-        <label>Wage (year):</label>
-        <input type="number" onChange={(event)=>{setWage(event.target.value)}}></input>
-        <button onClick={addEmployee}>Add Emplyee</button>
-      </div>
-   
-      <div className="employees">
-        <button onClick={getEmployees}>Show Emplyees</button>
-        {employeeList.map((val,key)=>{
-          return <div className="employee">
-            <h3>Name: {val.name}</h3>
-            <h3>Age: {val.age}</h3>
-            <h3>Country: {val.country}</h3>
-            <h3>Posiiton: {val.position}</h3>
-            <h3>Wage: {val.wage}</h3>
-            </div>
-        })}
-      </div>
-    </div>
+    <Router>
+      <NavigationBar/>      
+      <Routes>      
+        <Route path="/" element={<Home/>}/> 
+        <Route path="/Upcoming_flight" element={<Flight/>}/>          
+        <Route path="/SignIn" element={<SignIn/>}/>
+        <Route path="/SignUp" element={<SignUp/>}/>
+        <Route path="/Search" element={<SearchPage/>}/>
+        <Route path="/Booking" element={<Booking/>}/>
+        <Route path="/Summary" element={<Summary/>}/>
+        <Route path="/About" element={<About/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
+      </Routes>
+      <Scroller/>
+      <Footer/>
+    </Router>
   );
 }
+
+function Flight() {
+  return (
+    <>      
+      <UpcomingFlights />
+      <MainFeaturedPost/>
+    </>
+  );
+}
+
+function SearchPage(){
+  return(
+    <>   
+      <Search/>
+      <Table/>
+    </>
+  )
+}
+
+
+
 
 export default App;

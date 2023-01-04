@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-ymd-date-select": "^0.2.0"
+  }
+}
