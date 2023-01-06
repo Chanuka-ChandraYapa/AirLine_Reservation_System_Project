@@ -166,3 +166,4 @@ INSERT INTO `airline_reservation_system`.`guest` (`passenger_ID`) VALUES ('10004
 
 
 insert into staff values('1','1234','Nimal','Amara',98731,'hdsfkjh@gmail.com','2000-12-05','Male','Sri Lanka');
+UPDATE `airline_reservation_system`.`staff` SET `username` = 'Nimal' WHERE (`emp_id` = '1');
