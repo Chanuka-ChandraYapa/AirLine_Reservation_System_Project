@@ -11,6 +11,13 @@ const getFlightListRoute=require('./Routes/FlightListDatabase');
 const getAircraftModelRoute=require('./Routes/AircraftModelDatabase')
 const getAirportRoute=require('./Routes/AirportDatabase');
 const getPassengersGivenFlightRoute=require('./Routes/PassengersGivenFlight');
+const getNumberOfPassengersDateRoute=require('./Routes/NumberOfPassengersDate');
+const getNumberOfBookingPassengersRoute=require('./Routes/NumberofBookingPassengers');
+const getNumberOfBookingGoldRoute=require('./Routes/NumberOfBookingGold');
+const getNumberOfFrequentRoute=require('./Routes/NumberOfBookingFrequent');
+const getPastFlightRoute=require('./Routes/PastFlightDatabse');
+const getPassengerCount=require('./Routes/PassengerCountDatabase');
+const getTotalRevenue=require('./Routes/TotalRevenue');
 
 
 app.use('/create',signInRoute);
@@ -19,6 +26,13 @@ app.use('/flights',getFlightListRoute);
 app.use('/aircraftModel',getAircraftModelRoute);
 app.use('/airport',getAirportRoute);
 app.use('/findpassengers',getPassengersGivenFlightRoute);
+app.use('/numberOfPassengers',getNumberOfPassengersDateRoute);
+app.use('/numberOfBookingGuestPassengers',getNumberOfBookingPassengersRoute);
+app.use('/numberOfBookingGoldPassengers',getNumberOfBookingGoldRoute);
+app.use('/numberOfBookingFrequentPassengers',getNumberOfFrequentRoute);
+app.use('/pastFlights',getPastFlightRoute);
+app.use('/passengerCount',getPassengerCount);
+app.use('/totalRevenue',getTotalRevenue);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");

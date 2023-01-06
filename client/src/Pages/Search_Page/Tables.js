@@ -43,7 +43,8 @@ const rows = [
 
 export default function Tables() {
   return (
-    <TableContainer component={Paper}>
+    
+    <TableContainer component={Paper} sx = {{marginLeft:"15%" , width: "70%"}}>
       <Table sx={{ minWidth: 1000 }} aria-label="customized table">
         <TableHead>
           <TableRow>

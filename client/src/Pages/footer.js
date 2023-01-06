@@ -27,16 +27,20 @@ function Copyright() {
 export default function StickyFooter() {
   return (
     <Box
+    
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh',
+        
+        padding: "auto",
+        
       }}
     >
       <CssBaseline />
       
       <Box
         component="footer"
+        
         sx={{
           py: 3,
           px: 2,

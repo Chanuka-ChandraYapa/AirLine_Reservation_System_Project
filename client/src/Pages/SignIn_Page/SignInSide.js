@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from 'axios';
 import {useState} from 'react';
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -53,7 +54,8 @@ export default function SignInSide() {
         password:password}).then((response)=>{
             if (response.data.success){                
                 setWrong("Password is correct");
-                window.location.href="/";
+                window.location.href="/User";
+
                 
             }
             else{

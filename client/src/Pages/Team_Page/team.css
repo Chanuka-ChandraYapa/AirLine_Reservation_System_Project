@@ -1,0 +1,107 @@
+.model-title
+{
+    text-align: center;
+    margin: 100px auto auto 0;
+    font-size: 50px;
+    color: #272c60;
+}
+
+.divider
+{
+    width: 75px;
+    height: 4px;
+    background-color: #272c60;
+    position: relative;
+    margin: 20px auto 60px;
+}
+
+.members
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.member
+{
+    margin: 20px 15px;
+    border-radius: 10px;
+    padding: 0;
+    height: 400px;
+    overflow: hidden;
+}
+
+.member:hover
+{
+    transform: scale(1.01);
+}
+
+
+#model1 .description
+{
+    width: 400px;
+    height: 425px;
+    position: relative;
+    background-color: rgba(8,61,119,0.5);
+    transform: translateY(0);
+    border-radius: 15px;
+    transition: all 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#model1 .member
+{
+    cursor: pointer;
+    transition: all 1s;
+}
+
+#model1 .member:hover
+{
+    transform: scale(1.01);
+}
+
+#model1 .member:hover .description
+{
+    transform: translateY(-100%);
+}
+
+#model1 .description h1
+{
+    color: #fff;
+}
+
+
+#model1 .description h2
+{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #F21B3F;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+#model1 .description p
+{
+    color: #fff;
+    text-align: justify;
+    padding: 0 15px;
+}
+
+#model1 .description .social-media svg
+{
+    color: #fff;
+    font-size: 35px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#model1 .description .social-media svg:hover
+{
+    transform: scale(1.1);
+    color: #F21B3F;
+}

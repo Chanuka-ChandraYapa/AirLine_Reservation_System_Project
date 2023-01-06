@@ -15,7 +15,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import image from "./air.jpg";
+import { Paper } from '@mui/material';
 const cards = [1, 2, 3];
 
 const theme = createTheme();
@@ -26,14 +27,20 @@ export default function Album() {
       <CssBaseline />
       <main>
         {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
+        {/* <Paper elevation={24}
+      sx={{
+        position: "relative",
+        backgroundColor: 'grey.900',
+        color: '#fff',
+        mb: 4,
+        backgroundSize: 'cover',
+        backgroundRepeat:'repeat',
+        backgroundPosition: 'center',
+        backgroundImage: `url(${image})`,
+        width: 'auto',
+        height: 900,
+      }}>
+        
             <Typography
               component="h1"
               variant="h2"
@@ -69,16 +76,96 @@ export default function Album() {
               <Button variant="contained">More about us...</Button>
               <Button variant="outlined">Aircraft details</Button>
             </Stack>
-          </Container>
-        </Box>
-        <CardMedia
-                    component="img" 
-                    sx={{
-                      // 16:9
-                    }}
-                    image="AboutUs03.jpg"
-                    alt="random" 
-                  />
+        
+        
+        </Paper> */}
+        <Paper elevation={24}
+      sx={{
+        position: "relative",
+        backgroundColor: 'grey.900',
+        color: '#fff',
+        mb: 4,
+        backgroundSize: 'cover',
+        backgroundRepeat:'repeat',
+        backgroundPosition: 'center',
+        backgroundImage: `url(${image})`,
+        width: 'auto',
+        height: 900,
+      }}
+    >
+      {/* Increase the priority of the hero background image */}
+      
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          backgroundColor: 'rgba(0,0,0,.3)',
+          
+        }}
+      />
+      <Grid container>
+        <Grid item md={6}>
+          
+          <Box
+          m={2} 
+          pt={10}
+            sx={{
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              right: 0,
+              left: 0,
+              
+              
+            }}
+          >
+            <Typography  fontSize={100} component="h0" variant="h2" color="inherit" gutterBottom>
+              <center>About Us</center>
+            </Typography>
+            <Typography  fontSize={30} marginTop={'10px'}  color="inherit" >
+            <center>B Airlines has been a leader in the aviation industry for over 50 years,
+                    with a strong commitment to safety, customer service, and innovation. Our fleet 
+                    of modern aircraft serves over 100 destinations across six continents, and we are
+                    proud to have received numerous awards for our high levels of satisfaction among
+                    travelers. In addition to our focus on operational excellence, we are also committed 
+                    to sustainability and giving back to the communities we serve. Thank you for
+                    choosing B Airlines for your travel needs.
+            </center>
+            </Typography>
+            <Grid marginTop={30} container spacing={1}>
+            
+        <Grid item xs={12} sm={6}>
+          <Typography align='right' >
+            <Button 
+                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    color="info"
+                    size='large'
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+              More about us...
+            </Button>
+            </Typography>
+            </Grid>
+        <Grid item xs={12} sm={6}>
+          <Typography align='left'>
+            <Button 
+                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    color="info"
+                    size="large"
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+              Aircraft Details
+            </Button>
+            </Typography>
+            </Grid>
+            </Grid>
+            
+          </Box>
+        </Grid>
+      </Grid>
+    </Paper>
+        
             <Typography
               component="h1"
               variant="h2"

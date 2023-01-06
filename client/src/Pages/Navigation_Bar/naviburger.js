@@ -20,9 +20,39 @@ import Avatar from '@mui/material/Avatar';
 import { blue, blueGrey, deepOrange, green, grey, lightBlue, red } from '@mui/material/colors';
 import Image from './Avatar.jpeg';
 import { useNavigate } from 'react-router-dom';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { Passenger,CountPassenger, Booking, Revenue } from '../Summary_Page/summary';
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function NavBar() {  
+ 
+  
   let navigate=useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <React.Fragment>
@@ -59,35 +89,10 @@ function NavBar() {
               
             </Button>
 
-            <Button
-              variant="button"
-              color="text.primary"             
-              sx={{ my: 1, mx: 1.5 }}
-              style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Upcoming_flight");}}
-            >
-                Upcoming Flights
-            </Button>
             
-            <Button
-              variant="button"
-              color="text.primary"           
-              sx={{ my: 1, mx: 1.5 }}
-              style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Search");}}
-            >
-              Search Flight
-            </Button>
-
-            <Button
-              variant="button"
-              color="text.primary"           
-              sx={{ my: 1, mx: 1.5 }}
-              style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Summary");}}
-            >
-              Summary
-            </Button>
+            
+            
+            
 
             <Button
               variant="button"
@@ -103,9 +108,12 @@ function NavBar() {
               color="text.primary"          
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
+              onClick={()=>{navigate("/Team");}}
             >
               Team
             </Button>
+
+              
           </nav>
           <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={()=>{navigate("/SignIn");}}>
             Login

@@ -17,16 +17,17 @@ function MainFeaturedPost() {
     <Paper elevation={24}
       sx={{
         position: 'relative',
-        backgroundColor: 'grey.800',
+        backgroundColor: 'grey.900',
         color: '#fff',
         mb: 4,
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeat: 'repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${Image})`,
-        width: 1200,
+        width: 'auto',
         height: 500,
       }}
+      
     >
       {/* Increase the priority of the hero background image */}
       
@@ -45,7 +46,7 @@ function MainFeaturedPost() {
         }}
       />
       <Grid container>
-        <Grid item md={6}>
+        
           
           <Box
             sx={{
@@ -55,9 +56,9 @@ function MainFeaturedPost() {
             }}
           >
             <Typography  component="h0" variant="h3" color="inherit" gutterBottom>
-              <center>About</center>
+              <center>About Us</center>
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography marginTop={25} variant="h5" color="inherit" paragraph>
             <center>Welcome to B Airways, the premier airline reservation system for all your travel needs. With B Airways, you can easily book flights to destinations around the world, as well as manage your bookings and view your flight itineraries. Our system is designed to be user-friendly and efficient, ensuring that you can find the best prices and availability for your travel plans. Whether you're a business traveler or a leisure traveler...
             </center>
             </Typography>
@@ -69,7 +70,7 @@ function MainFeaturedPost() {
             </Button>
             </Typography>
           </Box>
-        </Grid>
+        
       </Grid>
     </Paper>
     </main>

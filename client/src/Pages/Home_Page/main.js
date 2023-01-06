@@ -12,11 +12,16 @@ import Button from '@mui/material/Button';
 import { autocompleteClasses } from '@mui/material';
 import { height } from '@mui/system';
 import { useState,useEffect } from 'react';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { useNavigate } from 'react-router-dom';
 
 const images = [Image1, Image2, Image3];
 function Main() {
 
-
+  let navigate=useNavigate();
   const [counter,setCounter] = useState(0);
 
   setInterval(function(){
@@ -87,37 +92,57 @@ function Main() {
           
         }}
       />
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <Typography align='right' >
             <Button 
                     sx={{ width: 300, padding: 1, margin: 2 }}
                     color="info"
                     size='large'
-                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
+                    onClick={()=>{navigate("/SignUp");}}>
               Register
             </Button>
             </Typography>
             </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <Typography align='center'>
             <Button 
                     sx={{ width: 300, padding: 1, margin: 2 }}
                     color="info"
                     size="large"
-                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
+                    onClick={()=>{navigate("/SignIn");}}>
               Login
             </Button>
             </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={3}>
           <Typography align='left'>
             <Button 
                     sx={{ width: 300, padding: 1, margin: 2 }}
                     color="info"
                     size="large"
-                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
+                    onClick={()=>{navigate("/Guest");}}
+                    >
+
               Proceed as a guest
+            </Button>
+            </Typography>
+            </Grid>
+
+            <Grid item xs={12} sm={3}>
+          <Typography align='left'>
+            <Button 
+                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    color="info"
+                    size="large"
+                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
+                    onClick={()=>{navigate("/SignInAdmin");}}
+                    >
+
+              Proceed as an Admin
             </Button>
             </Typography>
             </Grid>
@@ -127,6 +152,7 @@ function Main() {
         </Grid>
       </Grid>
     </Paper>
+    
     </main>
   );
 }

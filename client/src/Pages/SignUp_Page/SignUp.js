@@ -88,7 +88,7 @@ export default function SignUp() {
         password: password,
         confirm_password: confirm_password
       }).then(() => {
-        window.location.href="/";
+        window.location.href="/User";
       });
     }
     }
