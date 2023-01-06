@@ -83,7 +83,7 @@ function NavBar() {
               color="text.primary"             
               sx={{ my: 1, mx: 1.5}}
               style={{ color: 'inherit', textDecoration: 'inherit', ':hover': {color: 'purple'}}}
-              onClick={()=>{navigate("/");}}
+              onClick={()=>{navigate("/User");}}
             >
                   Home
               
@@ -96,7 +96,7 @@ function NavBar() {
               color="text.primary"           
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Search");}}
+              onClick={()=>{navigate("/UserSearch");}}
             >
               Search Flight
             </Button>
@@ -108,7 +108,7 @@ function NavBar() {
               color="text.primary"           
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/About");}}
+              onClick={()=>{navigate("/UserAbout");}}
             >
               About
             </Button>
@@ -117,7 +117,7 @@ function NavBar() {
               color="text.primary"          
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Team");}}
+              onClick={()=>{navigate("/UserTeam");}}
             >
               Team
             </Button>

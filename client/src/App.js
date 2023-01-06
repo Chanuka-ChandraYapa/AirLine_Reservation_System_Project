@@ -10,7 +10,7 @@ import SignUp from './Pages/SignUp_Page/SignUp';
 import Search from './Pages/Search_Page/search';
 import Booking from './Pages/booking/booking';
 import ErrorPage from './Pages/Error_Page/Error_Page';
-import About from './Pages/About_Page/Aboutpage';
+import About1 from './Pages/About_Page/Aboutpage';
 import Footer from './Pages/footer';
 import Scroller from './Pages/scroll';
 import Home1 from './Pages/Home_Page/main'
@@ -29,15 +29,24 @@ export default function HomePage() {
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
-        <Route path="/Search" element={<SearchPage/>}/>
         <Route path="/Booking" element={<Booking/>}/>
-        <Route path="/About" element={<About/>}/>
-        <Route path="/Team" element={<Model1/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest" element={<GuestHome/>} />
         <Route path="/Admin" element={<AdminHome/>} />
         <Route path="/SignInAdmin" element={<SignInAdmin/>} />
         <Route path="/User" element={<UserHome/>} />
+        <Route path="/GuestSearch" element={<GuestSearchPage/>} />
+        <Route path="/AdminSearch" element={<AdminSearchPage/>} />
+        <Route path="/UserSearch" element={<UserSearchPage/>} />
+        <Route path="/About" element={<About/>}/>
+        <Route path="/GuestAbout" element={<GuestAbout/>}/>
+        <Route path="/AdminAbout" element={<AdminAbout/>}/>
+        <Route path="/UserAbout" element={<UserAbout/>}/>
+        <Route path="/Team" element={<Team/>}/>
+        <Route path="/GuestTeam" element={<GuestTeam/>}/>
+        <Route path="/AdminTeam" element={<AdminTeam/>}/>
+        <Route path="/UserTeam" element={<UserTeam/>}/>
+
       </Routes>
       <Scroller/>
       <Footer/>
@@ -47,9 +56,30 @@ export default function HomePage() {
 }
 
 
-function SearchPage(){
+function GuestSearchPage(){
   return(
     <>   
+    <NavigationBarGuest/>
+      <Search/>     
+      <UpcomingFlights />
+    </>
+  )
+}
+
+function AdminSearchPage(){
+  return(
+    <>   
+    <NavigationBarAdmin/>
+      <Search/>     
+      <UpcomingFlights />
+    </>
+  )
+}
+
+function UserSearchPage(){
+  return(
+    <>   
+    <NavigationBarUser/>
       <Search/>     
       <UpcomingFlights />
     </>
@@ -98,4 +128,76 @@ function UserHome(){
   <UpcomingFlights />
   
   </>)
+}
+
+function About(){
+  return(
+    <>
+    <NavigationBarHome/>
+    <About1/>
+    </>
+  )
+}
+
+function GuestAbout(){
+  return(
+    <>
+    <NavigationBarGuest/>
+    <About1/>
+    </>
+  )
+}
+
+function AdminAbout(){
+  return(
+    <>
+    <NavigationBarAdmin/>
+    <About1/>
+    </>
+  )
+}
+
+function UserAbout(){
+  return(
+    <>
+    <NavigationBarUser/>
+    <About1/>
+    </>
+  )
+}
+
+function Team(){
+  return(
+    <>
+    <NavigationBarHome/>
+    <Model1/>
+    </>
+  )
+}
+
+function GuestTeam(){
+  return(
+    <>
+    <NavigationBarGuest/>
+    <Model1/>
+    </>
+  )
+}
+
+function AdminTeam(){
+  return(
+    <>
+    <NavigationBarAdmin/>
+    <Model1/>
+    </>
+  )
+}
+
+function UserTeam(){
+  return(
+    <>
+    <NavigationBarUser/>
+    <Model1/>
+    </>
+  )
 }
