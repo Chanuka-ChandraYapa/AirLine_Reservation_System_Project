@@ -19,14 +19,7 @@ DROP TABLE IF EXISTS flight CASCADE;
 DROP TABLE IF EXISTS airport CASCADE;
 DROP TABLE IF EXISTS location CASCADE;
 
-/* 
-  _        _     _           
- | |      | |   | |          
- | |_ __ _| |__ | | ___  ___ 
- | __/ _` | '_ \| |/ _ \/ __|
- | || (_| | |_) | |  __/\__ \
-  \__\__,_|_.__/|_|\___||___/
- */
+==================Tables=========================================
 
 
 
@@ -101,7 +94,7 @@ create table register_user
     city 		varchar(100) not null,
     country		varchar(100) not null,
     username	varchar(50) not null,
-    password	varchar(30) not null,
+    password	varchar(300) not null,
     postal_code		varchar(16) not null,
     type_ID			varchar(20),
     primary key (passenger_ID),
@@ -156,17 +149,26 @@ create table booking
     foreign key (schedule_ID) references flight_schedule(schedule_ID)ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key (payment_ID) references payment(payment_ID)ON DELETE CASCADE ON UPDATE CASCADE
     );
-    
-    
-/* 
-   __                  _   _                 
-  / _|                | | (_)                
- | |_ _   _ _ __   ___| |_ _  ___  _ __  ___ 
- |  _| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
- | | | |_| | | | | (__| |_| | (_) | | | \__ \
- |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/                              
- */
 
+
+
+CREATE TABLE Staff (
+  emp_id char(6) PRIMARY KEY, 
+  password varchar(255) NOT NULL,
+  first_name varchar(127) NOT NULL,
+  last_name varchar(127) NOT NULL,
+  contact_no varchar(15) NOT NULL,
+  email varchar(70) NOT NULL UNIQUE,
+  dob date NOT NULL,
+  gender varchar(200) NOT NULL,
+  country varchar(30) NOT NULL  
+);
+
+alter table staff
+add column username varchar(30);
+    
+    
+===================Functions=====================================
 
 
 
