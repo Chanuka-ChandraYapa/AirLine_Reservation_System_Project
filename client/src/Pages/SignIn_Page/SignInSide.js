@@ -16,20 +16,6 @@ import Axios from 'axios';
 import {useState} from 'react';
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-
 const theme = createTheme();
 
 export default function SignInSide() {
@@ -46,13 +32,12 @@ export default function SignInSide() {
   const [password,setPassword]=useState("");
   const [wrong,setWrong]=useState("");
   
-  
-  const checkUser=()=>{
+ const checkUser=()=>{
     Axios.post('http://localhost:3001/create',{
         name:name,
         password:password}).then((response)=>{
-            if (response.data.success){                
-                window.location.href="/User";                
+            if (response.data.success){  
+                window.location.href="/User";  
             }
             else{
                 setWrong("*Password is wrong");
