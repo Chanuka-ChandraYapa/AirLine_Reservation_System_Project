@@ -102,7 +102,7 @@ function NavBar() {
               color="text.primary"             
               sx={{ my: 1, mx: 1.5}}
               style={{ color: 'inherit', textDecoration: 'inherit', ':hover': {color: 'purple'}}}
-              onClick={()=>{navigate("/Guest");}}
+              onClick={()=>{navigate("/");}}
             >
                   Home
               

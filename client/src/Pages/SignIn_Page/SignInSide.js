@@ -53,11 +53,10 @@ export default function SignInSide() {
         name:name,
         password:password}).then((response)=>{
             if (response.data.success){                
-                setWrong("Password is correct");
                 window.location.href="/User";                
             }
             else{
-                setWrong("Password is wrong");
+                setWrong("*Password is wrong");
             }
         })
   }
@@ -132,14 +131,8 @@ export default function SignInSide() {
                 Sign In
               </Button>    
 
-              <div><h3>{wrong}</h3></div>         
-              <Grid container>                
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Create account"}
-                  </Link>
-                </Grid>
-              </Grid>              
+              <div style={{color: "red"}}>{wrong}</div>         
+                          
             </Box>
           </Box>
         </Grid>

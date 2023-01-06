@@ -81,7 +81,7 @@ export default function Search() {
 
   const searchflight = () => {
     if (!from_airport || !to_airport || !booking_date) {
-      setFullInfromation("All fields are required.")
+      setFullInfromation("*All fields are required.")
     }
     else{
       setFullInfromation("")
@@ -179,13 +179,14 @@ export default function Search() {
               Search
             </Button>
             <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "error" }}>{fullInfromation}</h2>
+                <div style={{ color: "red" }}>{fullInfromation}</div>
             </div>
           </Box>
         </Box>
       </Container>
       {isShown &&
-      <TableContainer component={Paper}>
+      <Container  maxWidth="lg">
+      <TableContainer component={Paper} >
       <Table sx={{ minWidth: 1000 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -212,7 +213,8 @@ export default function Search() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer> }
+    </TableContainer>
+    </Container> }
     </ThemeProvider>
   );
 }

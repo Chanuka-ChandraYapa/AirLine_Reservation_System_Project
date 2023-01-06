@@ -20,18 +20,6 @@ import {useState} from 'react';
 import Axios, * as others from 'axios';
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
@@ -66,10 +54,10 @@ export default function SignUp() {
 
   const addUser = () => {
     if (!firstName || !lastName || !passportNumber || !birthday || !country || !city || !gender || !phoneNumber || !address || !username || !password || !confirm_password) {
-      setFullInfromation("All fields are required.")
+      setFullInfromation("*All fields are required.")
       setCheckPassword("")
     }else if (password!=confirm_password){
-        setCheckPassword("Password and confirm password does not match.")
+        setCheckPassword("*Password and confirm password does not match.")
         setFullInfromation("")
     }
     else{
@@ -289,19 +277,13 @@ export default function SignUp() {
               Sign Up
             </Button>
             
-            <div><h2>{fullInfromation}</h2></div>
-            <div><h2>{checkPassword}</h2></div>
+            <div style={{color: "red"}}>{fullInfromation}</div>
+            <div style={{color: "red"}}>{checkPassword}</div>
 
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+            
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+       
       </Container>
     </ThemeProvider>
   );
