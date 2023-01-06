@@ -46,8 +46,7 @@ export default function SignInSide() {
   const [password,setPassword]=useState("");
   const [wrong,setWrong]=useState("");
   
-
-
+  
   const checkUser=()=>{
     Axios.post('http://localhost:3001/create',{
         name:name,

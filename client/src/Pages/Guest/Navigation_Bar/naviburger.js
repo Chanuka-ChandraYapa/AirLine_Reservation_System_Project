@@ -93,8 +93,8 @@ function NavBar() {
             variant="rounded"
             />
           </Typography>
-          <Typography marginLeft="15px" variant="h5" color="inherit" noWrap sx={{ flexGrow: 1, color: "#5465FF" }}style={{ }}>
-            <b></b>
+          <Typography marginLeft="15px" variant="h8" color="inherit" noWrap sx={{ flexGrow: 1, color: "#5465FF" }}style={{ }}>
+            Logged in as a Guest
           </Typography>
           <nav>
             <Button
