@@ -34,6 +34,9 @@ const Location = [];
 });
 
 export default function Search() {
+
+  const [isShown, setIsShown] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -90,6 +93,7 @@ export default function Search() {
         console.log(response.data);
         setFligtList(response.data)
       });
+      setIsShown(true);
     }
     }
 
@@ -180,6 +184,7 @@ export default function Search() {
           </Box>
         </Box>
       </Container>
+      {isShown &&
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 1000 }} aria-label="customized table">
         <TableHead>
@@ -207,7 +212,7 @@ export default function Search() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer> 
+    </TableContainer> }
     </ThemeProvider>
   );
 }

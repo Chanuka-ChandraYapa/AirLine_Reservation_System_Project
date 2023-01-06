@@ -29,7 +29,6 @@ export default function HomePage() {
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
-        <Route path="/Search" element={<SearchPage/>}/>
         <Route path="/Booking" element={<Booking/>}/>
         <Route path="/About" element={<About/>}/>
         <Route path="/Team" element={<Model1/>}/>
@@ -38,6 +37,9 @@ export default function HomePage() {
         <Route path="/Admin" element={<AdminHome/>} />
         <Route path="/SignInAdmin" element={<SignInAdmin/>} />
         <Route path="/User" element={<UserHome/>} />
+        <Route path="/GuestSearch" element={<GuestSearchPage/>} />
+        <Route path="/AdminSearch" element={<AdminSearchPage/>} />
+        <Route path="/UserSearch" element={<UserSearchPage/>} />
       </Routes>
       <Scroller/>
       <Footer/>
@@ -47,9 +49,30 @@ export default function HomePage() {
 }
 
 
-function SearchPage(){
+function GuestSearchPage(){
   return(
     <>   
+    <NavigationBarGuest/>
+      <Search/>     
+      <UpcomingFlights />
+    </>
+  )
+}
+
+function AdminSearchPage(){
+  return(
+    <>   
+    <NavigationBarAdmin/>
+      <Search/>     
+      <UpcomingFlights />
+    </>
+  )
+}
+
+function UserSearchPage(){
+  return(
+    <>   
+    <NavigationBarUser/>
       <Search/>     
       <UpcomingFlights />
     </>
