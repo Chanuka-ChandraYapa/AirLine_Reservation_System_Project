@@ -163,3 +163,6 @@ insert into booking values ("10004",'00017','2023-01-01','021','003');
 INSERT INTO `airline_reservation_system`.`guest` (`passenger_ID`) VALUES ('10000');
 INSERT INTO `airline_reservation_system`.`guest` (`passenger_ID`) VALUES ('10003');
 INSERT INTO `airline_reservation_system`.`guest` (`passenger_ID`) VALUES ('10004');
+
+
+insert into staff values('1','1234','Nimal','Amara',98731,'hdsfkjh@gmail.com','2000-12-05','Male','Sri Lanka');

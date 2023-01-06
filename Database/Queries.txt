@@ -1,0 +1,44 @@
+select p.first_name,p.last_name,p.passenger_ID,p.passport_number
+from passenger p left join booking b on p.passenger_ID=b.passenger_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join flight f on fs.flight_ID=f.flight_ID
+where f.flight_ID="3345"
+
+
+select p.first_name,p.last_name,p.passenger_ID,p.passport_number
+from passenger p left join booking b on p.passenger_ID=b.passenger_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join flight f on fs.flight_ID=f.flight_ID
+where f.flight_ID="3345" and p.age<18
+
+
+select count(*) as Count
+from passenger p left join booking b on p.passenger_ID=b.passenger_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join flight f on fs.flight_ID=f.flight_ID
+where f.destination="CGK" and fs.starting_date between "2022-12-30" and "2023-01-01"
+
+
+
+select count(*) as Guest_Count
+from guest g left join passenger p on g.passenger_ID=p.passenger_ID left join booking b on p.passenger_ID=b.passenger_ID
+where b.date between "2022-12-01" and "2023-01-10"
+
+
+select count(*) as Gold_Count
+from passenger_type pt left join register_user ru on pt.type_ID=ru.type_ID left join passenger p on ru.passenger_ID=p.passenger_ID left join booking b on p.passenger_ID=b.passenger_ID
+where pt.type="Gold" and date between "2022-12-01" and "2023-01-10" 
+
+
+select count(*) as Frequent_Count
+from passenger_type pt left join register_user ru on pt.type_ID=ru.type_ID left join passenger p on ru.passenger_ID=p.passenger_ID left join booking b on p.passenger_ID=b.passenger_ID
+where pt.type="Frequent" and date between "2022-12-01" and "2023-01-10" 
+
+
+select count(*) as Passenger_Count
+from passenger p left join booking b on p.passenger_ID=b.passenger_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join flight f on fs.flight_ID=f.flight_ID
+where f.origin="HRI" and f.destination="CGK"
+
+
+select f.flight_ID,fs.starting_time,fs.starting_date
+from flight_schedule fs left join flight f on fs.flight_ID=f.flight_ID
+where fs.starting_date<"2023-02-01" and f.origin="HRI" and f.destination="CGK" 
+
+
+select (sum(p.price)-sum(p.discount)) as Total_Revenue
+from payment p left join booking b on p.payment_ID=b.payment_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join airplane a on fs.airplane_ID=a.airplane_ID left join aircraft_model am on a.model_ID=am.model_ID
+where am.model_ID="B757"
