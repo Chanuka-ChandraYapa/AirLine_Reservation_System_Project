@@ -6,9 +6,34 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel } from '@mui/material';
 import { useState } from 'react';
+import Axios, * as others from 'axios';
 
 export default function AddressForm() {
     const [num, setNum] = React.useState('');
+    const [firstName, setFirstName]=React.useState('');
+    const [lastName, setLastName]=React.useState('');
+    const [address, setAddress]=React.useState('');
+    const [city, setCity]=React.useState('');
+    const [PostalCode,setPostalCode]=React.useState(0);
+    const [country,setCountry]=React.useState('');
+    const [passengerID, setPassengerID]=React.useState('10001');
+
+    Axios.post('http://localhost:3001/findDetails', {
+        passengerID:passengerID
+       }).then((response) => { 
+        setAddress(response.data[0].address);
+        setCity(response.data[0].city);
+        setCountry(response.data[0].country);
+        setPostalCode(response.data[0].postal_code);
+        console.log(response.data[0].postal_Code);    
+      });
+
+      Axios.post('http://localhost:3001/findDetailsPassenger', {
+        passengerID:passengerID
+       }).then((response) => { 
+          
+      });
+
 
   const handleChange = (event) => {
     setNum(event.target.value);
@@ -27,7 +52,11 @@ export default function AddressForm() {
             label="First name"
             fullWidth
             autoComplete="given-name"
-            variant="standard"
+            variant="standard" 
+            value={firstName}
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -39,6 +68,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={lastName}            
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -50,6 +83,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="address"
             variant="standard"
+            value={address}           
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -61,6 +98,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            value={city}           
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -81,6 +122,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            value={PostalCode}           
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -92,6 +137,10 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            value={country}          
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid >
         <Grid item xs={12} sm={4}>

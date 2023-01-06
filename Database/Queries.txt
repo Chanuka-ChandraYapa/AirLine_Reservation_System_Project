@@ -42,3 +42,9 @@ where fs.starting_date<"2023-02-01" and f.origin="HRI" and f.destination="CGK"
 select (sum(p.price)-sum(p.discount)) as Total_Revenue
 from payment p left join booking b on p.payment_ID=b.payment_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join airplane a on fs.airplane_ID=a.airplane_ID left join aircraft_model am on a.model_ID=am.model_ID
 where am.model_ID="B757"
+
+
+
+select address,city,country,postal_code
+from register_user
+where passenger_ID="10001"

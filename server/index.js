@@ -20,6 +20,7 @@ const getPassengerCount=require('./Routes/PassengerCountDatabase');
 const getTotalRevenue=require('./Routes/TotalRevenue');
 const getSearchFlight=require('./Routes/SearchFlightDatabase');
 const getSignInAdmin=require('./Routes/SignInAdminDatabase');
+const getUserDetails=require('./Routes/FindUserDetails');
 
 
 app.use('/create',signInRoute);
@@ -37,6 +38,7 @@ app.use('/passengerCount',getPassengerCount);
 app.use('/totalRevenue',getTotalRevenue);
 app.use('/searchflight',getSearchFlight);
 app.use('/adminSignIn',getSignInAdmin);
+app.use('/findDetails',getUserDetails);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");
