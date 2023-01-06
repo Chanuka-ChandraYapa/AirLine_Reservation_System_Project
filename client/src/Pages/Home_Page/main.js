@@ -22,11 +22,21 @@ const images = [Image1, Image2, Image3];
 function Main() {
 
   let navigate=useNavigate();
-  const [counter,setCounter] = useState(0);
-
-  setInterval(function(){
-    counter === 2 ? setCounter(0) : setCounter(counter + 1);
-  }, 3000);
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+        if(currentIndex === images.length - 1) {
+            setCurrentIndex(0);
+        } 
+        else {
+             setCurrentIndex(currentIndex + 1);
+        }
+    }, 5000)
+    
+    return () => clearInterval(intervalId);
+  }, [currentIndex])
+ 
     return (
     <main>
 
@@ -39,7 +49,7 @@ function Main() {
         backgroundSize: 'cover',
         backgroundRepeat:'repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${images[counter]})`,
+        backgroundImage: `url(${images[currentIndex]})`,
         width: 'auto',
         height: 900,
       }}

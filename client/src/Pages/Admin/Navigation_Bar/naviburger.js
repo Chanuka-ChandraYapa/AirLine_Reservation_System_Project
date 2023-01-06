@@ -99,7 +99,16 @@ function NavBar() {
           <nav>
             
 
-            
+          <Button
+              variant="button"
+              color="text.primary"             
+              sx={{ my: 1, mx: 1.5}}
+              style={{ color: 'inherit', textDecoration: 'inherit', ':hover': {color: 'purple'}}}
+              onClick={()=>{navigate("/Admin");}}
+            >
+                  Home
+              
+            </Button>
             
             <Button
               variant="button"
@@ -224,7 +233,7 @@ function NavBar() {
               color="text.primary"          
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/Team");}}
+              onClick={()=>{navigate("/AdminTeam");}}
             >
               Team
             </Button>
