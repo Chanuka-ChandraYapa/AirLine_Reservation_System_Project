@@ -3,10 +3,10 @@ const router=express.Router();
 const mysql=require('mysql');
 
 const db=mysql.createConnection({
-  user: 'root',
-  host: 'localhost',
-  password: 'password',
-  database: 'airline_reservation_system',
+    user: 'root',
+    host: '127.0.0.1',
+    password: 'Group_project_24',
+    database: 'airline_reservation_system',
 });
 
 router.get('/', (req, res) => {

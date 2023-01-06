@@ -18,6 +18,7 @@ const getNumberOfFrequentRoute=require('./Routes/NumberOfBookingFrequent');
 const getPastFlightRoute=require('./Routes/PastFlightDatabse');
 const getPassengerCount=require('./Routes/PassengerCountDatabase');
 const getTotalRevenue=require('./Routes/TotalRevenue');
+const getSearchFlight=require('./Routes/SearchFlightDatabase');
 
 
 app.use('/create',signInRoute);
@@ -33,6 +34,7 @@ app.use('/numberOfBookingFrequentPassengers',getNumberOfFrequentRoute);
 app.use('/pastFlights',getPastFlightRoute);
 app.use('/passengerCount',getPassengerCount);
 app.use('/totalRevenue',getTotalRevenue);
+app.use('/searchflight',getSearchFlight);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");

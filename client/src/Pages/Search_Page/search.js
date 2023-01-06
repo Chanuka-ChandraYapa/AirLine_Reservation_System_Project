@@ -3,28 +3,108 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import {useState} from 'react';
+import Axios, * as others from 'axios';
 
 const theme = createTheme();
+
+const Location = [];
+
+  fetch('http://localhost:3001/airport').then(response => response.json()).then(data => {
+
+  for (let i=0;i<data.length;i++){
+    Location.push(data[i].airport_code);
+  }   
+});
 
 export default function Search() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      From: data.get('from_airport'),
+      To: data.get('to_airport'),
+      Date: data.get('booking_date'),
+
     });
   };
+
+
+  
+  
+  const [booking_date, setBooking_date] = useState("");
+  const [fullInfromation,setFullInfromation]=useState("");
+  const [flightList, setFligtList] = useState([]);
+  
+
+
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.info.dark,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
+  
+
+  const searchflight = () => {
+    if (!from_airport || !to_airport || !booking_date) {
+      setFullInfromation("All fields are required.")
+    }
+    else{
+      setFullInfromation("")
+      Axios.post('http://localhost:3001/searchflight', {
+        from_airport: from_airport,
+        to_airport: to_airport,
+        booking_date: booking_date
+       }).then((response) => {
+        console.log(response.data);
+        setFligtList(response.data)
+      });
+    }
+    }
+
+    const [from_airport, setFrom_airport] = useState("");
+  const handleChange1 = (event) => {
+    setFrom_airport(event.target.value);
+  };
+  
+  
+  
+    const [to_airport, setTo_airport] = useState("");
+  const handleChange2 = (event) => {
+    setTo_airport(event.target.value);
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,40 +125,48 @@ export default function Search() {
             Search Your Flight
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">From Airport</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="from_airport"                   
+              name="from_airport"
+              label="from_airport" 
+              value= {from_airport}
+              onChange={handleChange1}
+            >
+            {Location.map((test)=><MenuItem value={test}>{test}</MenuItem>)}               
+            </Select>
+          </FormControl>
+          <FormControl fullWidth style={{ marginTop: 16 }}>
+            <InputLabel id="demo-simple-select-label">To Airport</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="to_airport"                   
+              name="to_airport"
+              label="to_airport" 
+              value= {to_airport}
+              onChange={handleChange2}
+            >
+            {Location.map((test)=><MenuItem value={test}>{test}</MenuItem>)}               
+            </Select>
+          </FormControl>
+
+            <TextField onChange={(event)=>{setBooking_date(event.target.value)}}
               margin="normal"
               required
               fullWidth
-              id="From"
-              label="From Airport"
-              name="From"
-              autoComplete="From"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="To"
-              label="To Airport"
-              id="To"
-              autoComplete="To"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="Date"
+              name="booking_date"
               label="Departure Date"
-              id="Date"
+              id="booking_date"
               type="Date"
-              autoComplete="Date"
+              autoComplete="family-name"
               InputLabelProps={{
                 shrink:true
               }}
             />
             
-            <Button
+            <Button onClick={searchflight}
               type="submit"
               fullWidth
               variant="contained"
@@ -86,9 +174,40 @@ export default function Search() {
             >
               Search
             </Button>
+            <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "error" }}>{fullInfromation}</h2>
+            </div>
           </Box>
         </Box>
       </Container>
+      <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 1000 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Flight No.</StyledTableCell>
+            <StyledTableCell align="right">From</StyledTableCell>
+            <StyledTableCell align="right">To</StyledTableCell>
+            <StyledTableCell align="right">Take-Off time&nbsp;(UTC)</StyledTableCell>
+            <StyledTableCell align="right">Landing time&nbsp;(UTC)</StyledTableCell>
+            <StyledTableCell align="right">Book Status</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {flightList.map((row) => (
+            <StyledTableRow key={row.name}>
+              <StyledTableCell component="th" scope="row">
+                {row.flight_ID}
+              </StyledTableCell>
+              <StyledTableCell align="right">{from_airport}</StyledTableCell>
+              <StyledTableCell align="right">{to_airport}</StyledTableCell>
+              <StyledTableCell align="right">{row.starting_time}</StyledTableCell>
+              <StyledTableCell align="right">{row.stopping_time}</StyledTableCell>
+              <StyledTableCell align="right"><Button variant="outlined">Book</Button></StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer> 
     </ThemeProvider>
   );
 }

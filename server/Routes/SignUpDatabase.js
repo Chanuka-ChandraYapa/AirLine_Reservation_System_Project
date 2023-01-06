@@ -2,10 +2,13 @@ const express=require("express");
 const router=express.Router();
 const mysql=require('mysql');
 
+const crypto = require('crypto');
+const hash = crypto.createHash('sha256');
+
 const db=mysql.createConnection({
     user: 'root',
-    host: 'localhost',
-    password: 'password',
+    host: '127.0.0.1',
+    password: 'Group_project_24',
     database: 'airline_reservation_system',
 });
 
@@ -22,7 +25,22 @@ router.post('/',(req,res)=>{
     const address=req.body.address
     const username=req.body.username
     const password=req.body.password    
-    const postal_code=req.body.postal_code     
+    const postal_code=req.body.postal_code  
+
+
+    const calculateAge = (birthday) => {
+        const currentDate = new Date();
+        const birthDate = new Date(birthday);
+        const ageInMilliseconds = currentDate - birthDate;
+        const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // 1000 milliseconds in a second, 60 seconds in a minute, 60 minutes in an hour, 24 hours in a day, 365.25 days in a year (to account for leap years)
+        return Math.floor(ageInYears);
+      }
+      
+    const age = calculateAge(birthday);
+    
+    
+    hash.update(password);
+    const encryptedPassword = hash.digest('hex');
     
     if (gender===10){
         gender="Male"
@@ -34,27 +52,9 @@ router.post('/',(req,res)=>{
         gender="Other"
     }
 
-    const sql1='insert into passenger ( first_name, last_name, passport_number, birthday, age) values ( ?, ?, ?, ?, ?)';
-    const params = [firstName,lastName,passportNumber,birthday,34];
-
-    db.query(sql1, params, function(error, results, fields) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(results);
-        }
-      });
-
-      db.query("SELECT passenger_ID FROM passenger WHERE passport_number='"+passportNumber+"'",(err,result)=>{
-        console.log("Error is not found")
-        console.log(result[0]);
-        const sql = 'INSERT INTO register_user (passenger_ID, num_of_times_booked, gender, contact_number, address, city, country, username, password, postal_code, type_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        const params = [result[0].passenger_ID,0, gender, phoneNumber, address, city, country, username, password, postal_code, '01'];
-        db.query(sql, params, function(error, results, fields) {
-            res.send("Successfully added");
-        });
-       
-    })    
+    db.query("call add_user('"+firstName+"', '"+lastName+"', '"+passportNumber+"', '"+birthday+"', '"+ age+"', 0, '"+gender+"',"+ phoneNumber+", '"+address+"', '"+city+"', '"+country+"', '"+username+"', '"+password+"', '"+postal_code+"');", (error, results) => {
+      res.send("Succeccfully added.");
+    });   
 });
 
 module.exports=router;

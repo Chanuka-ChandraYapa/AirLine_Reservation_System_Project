@@ -8,7 +8,6 @@ import MainFeaturedPost from './Pages/Upcoming_Flight/about';
 import SignIn from './Pages/SignIn_Page/SignInSide';
 import SignUp from './Pages/SignUp_Page/SignUp';
 import Search from './Pages/Search_Page/search';
-import Table from './Pages/Search_Page/Tables';
 import Booking from './Pages/booking/booking';
 import ErrorPage from './Pages/Error_Page/Error_Page';
 import About from './Pages/About_Page/Aboutpage';
@@ -51,8 +50,7 @@ export default function HomePage() {
 function SearchPage(){
   return(
     <>   
-      <Search/>
-      <Table/>
+      <Search/>     
       <UpcomingFlights />
     </>
   )

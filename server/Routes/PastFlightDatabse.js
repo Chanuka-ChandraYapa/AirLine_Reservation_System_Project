@@ -10,10 +10,10 @@ const yyyy = today.getFullYear();
 const formattedDate = `${yyyy}-${mm}-${dd}`;
 
 const db=mysql.createConnection({
-  user: 'root',
-  host: 'localhost',
-  password: 'password',
-  database: 'airline_reservation_system',
+    user: 'root',
+    host: '127.0.0.1',
+    password: 'Group_project_24',
+    database: 'airline_reservation_system',
 });
 
 router.get('/', (req, res) => {    
