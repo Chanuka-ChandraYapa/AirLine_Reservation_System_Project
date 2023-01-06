@@ -10,7 +10,7 @@ import SignUp from './Pages/SignUp_Page/SignUp';
 import Search from './Pages/Search_Page/search';
 import Booking from './Pages/booking/booking';
 import ErrorPage from './Pages/Error_Page/Error_Page';
-import About from './Pages/About_Page/Aboutpage';
+import About1 from './Pages/About_Page/Aboutpage';
 import Footer from './Pages/footer';
 import Scroller from './Pages/scroll';
 import Home1 from './Pages/Home_Page/main'
@@ -30,7 +30,6 @@ export default function HomePage() {
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
         <Route path="/Booking" element={<Booking/>}/>
-        <Route path="/About" element={<About/>}/>
         <Route path="/Team" element={<Model1/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest" element={<GuestHome/>} />
@@ -40,6 +39,10 @@ export default function HomePage() {
         <Route path="/GuestSearch" element={<GuestSearchPage/>} />
         <Route path="/AdminSearch" element={<AdminSearchPage/>} />
         <Route path="/UserSearch" element={<UserSearchPage/>} />
+        <Route path="/About" element={<About/>}/>
+        <Route path="/GuestAbout" element={<GuestAbout/>}/>
+        <Route path="/AdminAbout" element={<AdminAbout/>}/>
+        <Route path="/UserAbout" element={<UserAbout/>}/>
       </Routes>
       <Scroller/>
       <Footer/>
@@ -121,4 +124,40 @@ function UserHome(){
   <UpcomingFlights />
   
   </>)
+}
+
+function About(){
+  return(
+    <>
+    <NavigationBarHome/>
+    <About1/>
+    </>
+  )
+}
+
+function GuestAbout(){
+  return(
+    <>
+    <NavigationBarGuest/>
+    <About1/>
+    </>
+  )
+}
+
+function AdminAbout(){
+  return(
+    <>
+    <NavigationBarAdmin/>
+    <About1/>
+    </>
+  )
+}
+
+function UserAbout(){
+  return(
+    <>
+    <NavigationBarUser/>
+    <About1/>
+    </>
+  )
 }
