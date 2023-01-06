@@ -2,8 +2,7 @@ const express=require("express");
 const router=express.Router();
 const mysql=require('mysql');
 
-const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
+
 
 const db=mysql.createConnection({
     user: 'root',
@@ -36,11 +35,9 @@ router.post('/',(req,res)=>{
         return Math.floor(ageInYears);
       }
       
-    const age = calculateAge(birthday);
-    
-    
-    hash.update(password);
-    const encryptedPassword = hash.digest('hex');
+    const age = calculateAge(birthday);    
+ 
+  
     
     if (gender===10){
         gender="Male"

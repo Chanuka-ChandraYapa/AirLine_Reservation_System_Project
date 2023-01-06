@@ -2,7 +2,6 @@ const express=require("express");
 const router=express.Router();
 const mysql=require('mysql');
 const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
 
 const db=mysql.createConnection({
     user: 'root',
@@ -14,17 +13,15 @@ const db=mysql.createConnection({
 router.post('/',(req,res)=>{
     const name=req.body.name
     const password=req.body.password
-
     
-    hash.update(password);
-    const enteredEncryptedPassword = hash.digest('hex');
+   
 
     db.query("SELECT username,password FROM register_user WHERE username='"+name+"'",(err,result)=>{
         if (result.length==0 || err){
             console.log("Na")
             res.send({success:false});
         }else{            
-            if (result[0].password==enteredEncryptedPassword){
+            if (result[0].password==password){
                 console.log("Password hari")
                 res.send({success:true});
             }else{
