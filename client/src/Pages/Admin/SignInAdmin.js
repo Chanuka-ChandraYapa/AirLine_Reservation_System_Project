@@ -49,7 +49,7 @@ export default function SignInSide() {
 
 
   const checkUser=()=>{
-    Axios.post('http://localhost:3001/create',{
+    Axios.post('http://localhost:3001/adminSignIn',{
         name:name,
         password:password}).then((response)=>{
             if (response.data.success){                

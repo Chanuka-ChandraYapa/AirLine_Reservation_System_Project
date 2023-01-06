@@ -54,9 +54,7 @@ export default function SignInSide() {
         password:password}).then((response)=>{
             if (response.data.success){                
                 setWrong("Password is correct");
-                window.location.href="/User";
-
-                
+                window.location.href="/User";                
             }
             else{
                 setWrong("Password is wrong");
