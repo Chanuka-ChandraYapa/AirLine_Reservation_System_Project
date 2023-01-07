@@ -50,7 +50,7 @@ export default function SignUp() {
   const [postal_code,setPostalCode]=useState("");
 
   
-  
+  const [name,setName]=useState("");
 
   const addUser = () => {
     if (!firstName || !lastName || !passportNumber || !birthday || !country || !city || !gender || !phoneNumber || !address || !username || !password || !confirm_password) {
@@ -76,7 +76,12 @@ export default function SignUp() {
         password: password,
         confirm_password: confirm_password
       }).then(() => {
-        window.location.href="/User";
+          Axios.post('http://localhost:3001/getID',{
+            username:username
+          }).then((response)=>{
+            setName(response.data[0].passenger_ID);
+            console.log(name);
+          })
       });
     }
     }
