@@ -85,10 +85,10 @@ export default function AddFlight() {
           <Table sx={{ mt: 7,minWidth: 650 }}  aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Passenger ID</TableCell>
-                  <TableCell align="right">First Name</TableCell>
-                  <TableCell align="right">Last Name</TableCell>
-                  <TableCell align="right">Passport Number</TableCell>
+                  <TableCell>Flight ID</TableCell>
+                  <TableCell align="right">Origin</TableCell>
+                  <TableCell align="right">Destination</TableCell>
+                  <TableCell align="right">Duration</TableCell>
 
                 </TableRow>
               </TableHead>
@@ -98,10 +98,10 @@ export default function AddFlight() {
                     key={key}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row"> {val.passenger_ID} </TableCell>
-                    <TableCell align="right"> {val.first_name} </TableCell>
-                    <TableCell align="right">{val.last_name}</TableCell>
-                    <TableCell align="right">{val.passport_number}</TableCell>
+                    <TableCell component="th" scope="row"> {val.flight} </TableCell>
+                    <TableCell align="right"> {val.origin} </TableCell>
+                    <TableCell align="right">{val.destination}</TableCell>
+                    <TableCell align="right">{val.duration}</TableCell>
                     
                   </TableRow>
                 ))}
