@@ -36,7 +36,9 @@ export default function SignInSide() {
     Axios.post('http://localhost:3001/create',{
         name:name,
         password:password}).then((response)=>{
+            
             if (response.data.success){  
+                setName(response.data.result[0].passenger_ID);
                 window.location.href="/User/" + name;  
             }
             else{

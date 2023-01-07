@@ -16,14 +16,14 @@ router.post('/',(req,res)=>{
     
    
 
-    db.query("SELECT username,password FROM register_user WHERE username='"+name+"'",(err,result)=>{
+    db.query("SELECT username,password,passenger_ID FROM register_user WHERE username='"+name+"'",(err,result)=>{
         if (result.length==0 || err){
             console.log("Na")
             res.send({success:false});
         }else{            
             if (result[0].password==password){
                 console.log("Password hari")
-                res.send({success:true});
+                res.send({success:true,result});
             }else{
                 console.log("Thiyenawa password waradi")
                 res.send({success:false});
