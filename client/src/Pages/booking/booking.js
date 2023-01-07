@@ -27,12 +27,13 @@ import { useEffect } from 'react';
 
 const steps = ['General Information', 'Passenger Information', 'Payment Details'];
 
-function getStepContent(step) {
+function GetStepContent(step) {
+  const [num,setNum] = React.useState(2);
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm callback={setNum}/>;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm num={num}/>;
     case 2:
       return <Review />;
     default:
@@ -54,6 +55,7 @@ export default function Booking() {
     { name: 'Departure Time', detail: departure },
   ];  
 
+  const [num,setNum] = React.useState(2);
  
 
   const handleNext = () => {
@@ -65,6 +67,7 @@ export default function Booking() {
   };
 
   return (
+    
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="md" sx={{ mb: 4, alignItems: 'flex-start' }}>
@@ -109,7 +112,7 @@ export default function Booking() {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep)}
+              {GetStepContent(activeStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

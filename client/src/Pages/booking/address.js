@@ -9,7 +9,8 @@ import { useState } from 'react';
 import Axios, * as others from 'axios';
 import { useParams } from 'react-router';
 
-export default function AddressForm() {
+
+export default function AddressForm({callback}) {
     const [num, setNum] = React.useState('');
     const [firstName, setFirstName]=React.useState('');
     const [lastName, setLastName]=React.useState('');
@@ -19,10 +20,11 @@ export default function AddressForm() {
     const [country,setCountry]=React.useState('');
     const [passengerID, setPassengerID]=React.useState('10001');
 
+
     const { id, flight, from, to , departure} = useParams();
 
     Axios.post('http://localhost:3001/findDetails', {
-        passengerID:passengerID
+        passengerID:id
        }).then((response) => { 
         setAddress(response.data[0].address);
         setCity(response.data[0].city);
@@ -31,7 +33,7 @@ export default function AddressForm() {
       });
 
       Axios.post('http://localhost:3001/findDetailsPassenger', {
-        passengerID:passengerID
+        passengerID:id
        }).then((response) => { 
         setFirstName(response.data[0].first_name);
         setLastName(response.data[0].last_name);          
@@ -39,6 +41,7 @@ export default function AddressForm() {
 
   const handleChange = (event) => {
     setNum(event.target.value);
+    callback(event.target.value);
   };
   return (
     <React.Fragment>

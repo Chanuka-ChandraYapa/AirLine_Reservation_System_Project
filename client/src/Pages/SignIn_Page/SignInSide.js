@@ -39,7 +39,7 @@ export default function SignInSide() {
             
             if (response.data.success){  
                 setName(response.data.result[0].passenger_ID);
-                window.location.href="/User/" + name;  
+                window.location.href="/User/" + response.data.result[0].passenger_ID;  
             }
             else{
                 setWrong("*Password is wrong");

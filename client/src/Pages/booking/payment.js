@@ -8,6 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useState } from 'react';
 
 
 const MenuProps = {
@@ -17,7 +18,7 @@ const MenuProps = {
       },
     },
   };
-export default function PaymentForm() {
+export default function PaymentForm({num}) {
     const [type, setType] = React.useState('');
     const [column, setColumn] = React.useState('');
     const [row, setRow] = React.useState('');
@@ -30,10 +31,14 @@ export default function PaymentForm() {
   const handleChange3 = (event) => {
     setRow(event.target.value);
   };
+
+  
   return (
     <React.Fragment>
+      {new Array(num).fill(0).map((_, index) => (
+      <div key={index}>
       <Typography variant="h6" gutterBottom>
-        Passenger 1
+        Passenger {index+1}
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
@@ -180,6 +185,11 @@ export default function PaymentForm() {
     </Grid>
 
       </Grid>
+      <Typography marginTop={4} variant="h6" gutterBottom>
+        ---------------------------------------------------------------------------------------------------------------------
+      </Typography>
+      </div>
+       ))}
       <Typography marginTop={4} variant="h6" gutterBottom>
         Payment Details
       </Typography>
