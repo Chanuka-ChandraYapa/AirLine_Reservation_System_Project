@@ -1,15 +1,23 @@
 
-====================Triger======================================
-
-
+/*
+  _        _                           
+ | |      (_)                          
+ | |_ _ __ _  __ _  __ _  ___ _ __ ___ 
+ | __| '__| |/ _` |/ _` |/ _ \ '__/ __|
+ | |_| |  | | (_| | (_| |  __/ |  \__ \
+  \__|_|  |_|\__, |\__, |\___|_|  |___/
+              __/ | __/ |              
+             |___/ |___/               
+*/
 DROP TRIGGER IF EXISTS booking_after_insert;
 DROP TRIGGER IF EXISTS flight_schedule_after_insert;
+DROP TRIGGER IF EXISTS flight_schedule_after_delete;
 
-/*-------------------------------update_number_of_times_books_by_register_user-------------------------*/
+/*-------------------------------udate_number_of_times_books_by_register_user-------------------------*/
 
 DELIMITER $$
 CREATE TRIGGER booking_after_insert
-	AFTER INSERT ON booking
+	AFTER update ON booking
     FOR EACH ROW
 BEGIN
 	UPDATE register_user
@@ -38,6 +46,20 @@ END$$
 DELIMITER ;
 
 
+
+/*-------------------------------delete_seat_from_booking-------------------------------------------------*/
+
+DELIMITER $$
+CREATE TRIGGER flight_schedule_after_delete
+AFTER DELETE ON flight_schedule
+FOR EACH ROW
+BEGIN
+DELETE FROM booking
+WHERE schedule_ID = old.schedule_ID;
+END$$
+DELIMITER ;
+
+
 /*---------------------------------update_Register_user_Type--------------------------------------------
 
 DELIMITER $$
@@ -58,6 +80,11 @@ BEGIN
 END $$
 
 */
+
+
+
+
+
 
 
 
