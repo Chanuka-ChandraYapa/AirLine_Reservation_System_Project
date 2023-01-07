@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { useParams } from 'react-router';
 
 const details = [
   {
@@ -19,14 +20,18 @@ const details = [
  
 ];
 
-const flightdetails = [
-  { name: 'Flight', detail: '0001' },
-  { name: 'From', detail: 'BIA' },
-  { name: 'To', detail: 'MAA' },
-  { name: 'Departure Time', detail: '1200h' },
-];
 
 export default function Review() {
+
+  const { id,flight, from, to , departure} = useParams();
+  const flightdetails = [
+    { name: 'Flight', detail: flight},
+    { name: 'From', detail: from },
+    { name: 'To', detail: to },
+    { name: 'Departure Time', detail: departure },
+  ];  
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

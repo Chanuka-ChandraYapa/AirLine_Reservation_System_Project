@@ -58,7 +58,9 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="given-name"
             variant="standard" 
-            value={firstName}
+            key={firstName}
+            defaultValue={firstName}
+            // value={firstName}
             InputLabelProps={{
               shrink:true
             }}
@@ -73,7 +75,8 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="family-name"
             variant="standard"
-            value={lastName}            
+            key={lastName}
+            defaultValue={lastName}       
             InputLabelProps={{
               shrink:true
             }}
@@ -88,7 +91,8 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="address"
             variant="standard"
-            value={address}           
+            key={address} 
+            defaultValue={address}         
             InputLabelProps={{
               shrink:true
             }}
@@ -103,7 +107,8 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
-            value={city}           
+            key={city} 
+            defaultValue={city}       
             InputLabelProps={{
               shrink:true
             }}
@@ -127,7 +132,8 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
-            value={PostalCode}           
+            key={PostalCode} 
+            defaultValue={PostalCode}        
             InputLabelProps={{
               shrink:true
             }}
@@ -142,7 +148,8 @@ export default function AddressForm({callback}) {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
-            value={country}          
+            key={country} 
+            defaultValue={country}           
             InputLabelProps={{
               shrink:true
             }}
