@@ -48,9 +48,8 @@ router.post('/',(req,res)=>{
     else{
         gender="Other"
     }
-
-    db.query("call add_user('"+firstName+"', '"+lastName+"', '"+passportNumber+"', '"+birthday+"', '"+ age+"', 0, '"+gender+"',"+ phoneNumber+", '"+address+"', '"+city+"', '"+country+"', '"+username+"', '"+password+"', '"+postal_code+"');", (error, results) => {
-      
+   
+    db.query("call add_user('"+firstName+"', '"+lastName+"', '"+passportNumber+"', '"+birthday+"', '"+ age+"', 0, '"+gender+"',"+ phoneNumber+", '"+address+"', '"+city+"', '"+country+"', '"+username+"', '"+password+"', '"+postal_code+"');", (error, results) => {      
         res.send(results);
     });   
 });

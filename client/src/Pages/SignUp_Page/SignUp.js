@@ -75,13 +75,23 @@ export default function SignUp() {
         postal_code:postal_code,
         password: password,
         confirm_password: confirm_password
-      }).then(() => {
+      }).then((response) => {
+        console.log(response);
+        try{
           Axios.post('http://localhost:3001/getID',{
             username:username
           }).then((response)=>{
-            setName(response.data[0].passenger_ID);
-            console.log(name);
+            try{
+              setName(response.data[0].passenger_ID);
+              window.location.href="/SignIn";
+            }catch{
+              setCheckPassword("The username exists or passport number exist.");
+            }
+            
           })
+        }catch{          
+        }
+          
       });
     }
     }

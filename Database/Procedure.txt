@@ -16,15 +16,24 @@ create procedure add_user(p_first_name varchar(20),
     p_username varchar(50) ,
     p_password varchar(300),
     p_postal_code	varchar(16))
-begin
+begin	
 	DECLARE p_id INT;
+    DECLARE UserName varchar(50);
+    start transaction;
 	insert into passenger ( first_name, last_name, passport_number, birthday, age) 
     values ( p_first_name, p_last_name, p_passport_number, p_birthday, p_age); 
     
 	SELECT passenger_ID INTO p_id FROM passenger WHERE passport_number = p_passport_Number;
     
-    INSERT INTO register_user (passenger_ID, num_of_times_booked, gender, contact_number, address, city, country, username, password, postal_code, type_ID) 
-    VALUES (p_id, p_num_of_times_booked, p_gender, p_contact_number, p_address, p_city, p_country, p_username, p_password, p_postal_code, '01');
+    select username into UserName from register_user where passenger_ID=p_id;
+    if (UserName is null) then
+		INSERT INTO register_user (passenger_ID, num_of_times_booked, gender, contact_number, address, city, country, username, password, postal_code, type_ID) 
+		VALUES (p_id, p_num_of_times_booked, p_gender, p_contact_number, p_address, p_city, p_country, p_username, p_password, p_postal_code, '01');
+	else
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error: The username is exist';
+	end if;
+    commit;    
 end $$
 
 
