@@ -204,6 +204,28 @@ return (datediff(now(),dob))/365;
 
 
 
+USE `airline_reservation_system`;
+DROP function IF EXISTS `Stopping_date`;
+
+USE `airline_reservation_system`;
+DROP function IF EXISTS `airline_reservation_system`.`Stopping_date`;
+;
+
+DELIMITER $$
+USE `airline_reservation_system`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Stopping_date`(starting_date date,starting_time time,duration time) RETURNS date
+    DETERMINISTIC
+begin
+	declare Stopping_Time time;
+	set Stopping_Time=starting_time+duration;
+	return if (Stopping_Time>'24:00',starting_date+1,starting_date);	
+	
+end$$
+
+DELIMITER ;
+;
+
+
 ALTER TABLE passenger AUTO_INCREMENT=10000; 
 
 

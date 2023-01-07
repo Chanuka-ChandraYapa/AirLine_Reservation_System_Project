@@ -35,9 +35,25 @@ const timeSlots = Array.from(new Array(24 * 2)).map(
       }`,
   );
 
-const Flight=["Flight1","Flight2","Flight3"];
-const Airplane = ["Airplane1", "Airplane2","Airplane3","Airplane4"];
+const Flight=[];
+const Airplane = [];
 const Time = timeSlots;
+
+
+
+fetch('http://localhost:3001/findFlightID').then(response => response.json()).then(data => {
+     
+  for (let i=0;i<data.length;i++){
+    Flight.push(data[i].flight_ID);
+  }   
+});
+
+fetch('http://localhost:3001/airportID').then(response => response.json()).then(data => {
+
+for (let i=0;i<data.length;i++){
+  Airplane.push(data[i].airplane_ID);
+}   
+});
 
 
 const MenuProps = {
@@ -55,13 +71,29 @@ export default function AddFlight() {
         const data = new FormData(event.currentTarget);
         
       };
-    const addUser = () => {}
+   
     const [flight_List, setFlight_List]=useState([]);
     const [gender,setGender]=useState("");
     const [flight, setFlight] = useState("");
     const [airplane, setAirplane] = useState("");
     const [time, setTime] = useState("");
     const [date,setDate]=useState("");
+    const [origin,setOrigin]=useState("");
+    const [destination,setDestination]=useState("");
+    const [duration,setDuration]=useState("");
+
+    const searchflight = () =>{
+      Axios.post('http://localhost:3001/flightDetails', {   
+      flight:flight     
+       }).then((response) => {  
+        setAirplane(response.data[0].flight_ID);
+        setOrigin(response.data[0].origin);
+        setDestination(response.data[0].destination);
+        setDuration(response.data[0].duration);
+        console.log(response);     
+    });
+    }
+    
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,6 +121,15 @@ export default function AddFlight() {
                   <TableCell align="right">Origin</TableCell>
                   <TableCell align="right">Destination</TableCell>
                   <TableCell align="right">Duration</TableCell>
+
+                </TableRow>
+              </TableHead>
+              <TableHead>
+                <TableRow>
+                  <TableCell>{flight}</TableCell>
+                  <TableCell align="right">{origin}</TableCell>
+                  <TableCell align="right">{destination}</TableCell>
+                  <TableCell align="right">{duration}</TableCell>
 
                 </TableRow>
               </TableHead>
@@ -178,7 +219,7 @@ export default function AddFlight() {
               </Grid>
              
             </Grid>
-            <Button onClick={addUser}
+            <Button onClick={searchflight}
               type="submit"
               fullWidth
               variant="contained"

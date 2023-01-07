@@ -86,3 +86,62 @@ end; $$
 
 
 
+
+=========================Procedure to add flight schedule========================================================================
+
+
+
+DELIMITER $$
+create procedure insert_flight_schedule(
+    p_flight_ID varchar(15),
+    p_airplane_ID	varchar(15),
+    p_starting_time time,
+    p_starting_date date)
+begin
+	declare last_schedule_id varchar(15);
+    declare p_stopping_date date;
+    declare p_stopping_time time;
+    declare Duration time;
+    select schedule_ID into last_schedule_id from flight_schedule ORDER BY schedule_ID DESC LIMIT 1;
+    SET last_schedule_id= CAST(SUBSTRING(last_schedule_id, 2, LENGTH(last_schedule_id) - 2) AS UNSIGNED) + 1;
+    select duration into Duration from flight where flight_ID=p_flight_ID;
+    select airline_reservation_system.Stopping_date(p_starting_date, p_starting_time, Duration) into p_stopping_date;
+    select airline_reservation_system.Stopping_time(p_starting_date,  p_starting_time, Duration) into p_stopping_time;
+    insert into flight_schedule values(last_schedule_id,p_flight_ID,p_airplane_ID,p_starting_time,p_starting_date,p_stopping_date,p_stopping_time);
+end; $$
+
+
+
+
+
+
+==========================Procedure to add guest user==================================================================================
+
+
+
+
+DELIMITER $$
+create procedure add_geust_user(p_first_name varchar(20),
+	p_last_name varchar(20),
+	p_passport_number varchar(20),
+	p_birthday	date,p_age numeric(3,0))
+begin	
+	DECLARE p_id INT;
+    DECLARE UserName varchar(50);
+    start transaction;
+	insert into passenger ( first_name, last_name, passport_number, birthday, age) 
+    values ( p_first_name, p_last_name, p_passport_number, p_birthday, p_age); 
+    
+	SELECT passenger_ID INTO p_id FROM passenger WHERE passport_number = p_passport_Number;
+    
+    select username into UserName from guest where passenger_ID=p_id;
+    if (UserName is null) then
+		INSERT INTO guest (passenger_ID) 
+		VALUES (p_id);
+	else
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error: The username is exist';
+	end if;
+    commit;    
+end $$
+

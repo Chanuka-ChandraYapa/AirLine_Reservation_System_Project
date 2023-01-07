@@ -23,7 +23,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+
 
 const steps = ['General Information', 'Passenger Information', 'Payment Details'];
 
@@ -65,6 +66,7 @@ export default function Booking() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
 
   return (
     

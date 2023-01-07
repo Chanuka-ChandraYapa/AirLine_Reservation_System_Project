@@ -35,7 +35,7 @@ export default function PaymentForm({num}) {
   
   return (
     <React.Fragment>
-      {new Array(num).fill(0).map((_, index) => (
+      {new Array(num).fill(0).map((_, index) => (     
       <div key={index}>
       <Typography variant="h6" gutterBottom>
         Passenger {index+1}
