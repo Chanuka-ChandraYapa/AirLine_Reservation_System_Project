@@ -18,6 +18,8 @@ import Model1 from "./Pages/Team_Page/team";
 import ProtectedRoute from "./ProtectedRoute";
 import Home2 from "./Pages/Home_Page/main1";
 import SignInAdmin from "./Pages/Admin/SignInAdmin"
+import AddFlight from "./Pages/Admin/Addflight";
+
 export default function HomePage() { 
   return (
     <div style={{
@@ -36,7 +38,7 @@ export default function HomePage() {
         <Route path="/SignInAdmin" element={<SignInAdmin/>} />
         <Route path="/User/:id" element={<UserHome/>} />
         <Route path="/Guest/:id/GuestSearch" element={<GuestSearchPage/>} />
-        <Route path="/AdminSearch" element={<AdminSearchPage/>} />
+        <Route path="/AdminAddFlight" element={<AdminAddFlight/>} />
         <Route path="/User/:id/UserSearch" element={<UserSearchPage/>} />
         <Route path="/About" element={<About/>}/>
         <Route path="/GuestAbout" element={<GuestAbout/>}/>
@@ -66,11 +68,11 @@ function GuestSearchPage(){
   )
 }
 
-function AdminSearchPage(){
+function AdminAddFlight(){
   return(
     <>   
     <NavigationBarAdmin/>
-      <Search/>     
+      <AddFlight/>   
       <UpcomingFlights />
     </>
   )
