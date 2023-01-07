@@ -148,9 +148,10 @@ create table payment
         primary key(payment_ID));
 
 create table booking
-	(seat_ID			varchar(15),
-    schedule_ID		varchar(15),
+	(schedule_ID		varchar(15),
+    seat_ID			varchar(15),
     passenger_ID	int,
+    date            date,
     payment_ID		varchar(15),
     primary key(seat_ID,schedule_ID),
     foreign key (passenger_ID) references passenger(passenger_ID)ON DELETE CASCADE ON UPDATE CASCADE,
@@ -205,32 +206,7 @@ return (datediff(now(),dob))/365;
 
 ALTER TABLE passenger AUTO_INCREMENT=10000; 
 
-/*
-  _        _                           
- | |      (_)                          
- | |_ _ __ _  __ _  __ _  ___ _ __ ___ 
- | __| '__| |/ _` |/ _` |/ _ \ '__/ __|
- | |_| |  | | (_| | (_| |  __/ |  \__ \
-  \__|_|  |_|\__, |\__, |\___|_|  |___/
-              __/ | __/ |              
-             |___/ |___/               
-*/
 
--------------------------------udate_number_of_times_books_by_register_user-------------------------
-
-DELIMITER $$
-DROP TRIGGER IF EXISTS booking_after_insert;
-
-CREATE TRIGGER booking_after_insert
-	AFTER INSERT ON booking
-    FOR EACH ROW
-BEGIN
-	UPDATE register_user
-    SET num_of_times_booked = num_of_times_booked+1
-    WHERE passenger_ID = NEW.passenger_ID;
-END $$
-
-DELIMITER ;
 
 
 
