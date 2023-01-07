@@ -22,7 +22,7 @@ import Image from './Avatar.jpeg';
 import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useParams } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
@@ -42,7 +42,7 @@ const style = {
 
 function NavBar() {  
   
-  
+  const { user, id} = useParams();
   let navigate=useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -96,7 +96,7 @@ function NavBar() {
               color="text.primary"           
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/UserSearch");}}
+              onClick={()=>{navigate("/User/"+ id + "/UserSearch");}}
             >
               Search Flight
             </Button>

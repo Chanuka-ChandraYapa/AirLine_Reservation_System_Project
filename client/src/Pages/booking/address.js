@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { Select, MenuItem, FormHelperText, FormControl, InputLabel } from '@mui/material';
 import { useState } from 'react';
 import Axios, * as others from 'axios';
+import { useParams } from 'react-router';
 
 export default function AddressForm() {
     const [num, setNum] = React.useState('');
@@ -18,7 +19,7 @@ export default function AddressForm() {
     const [country,setCountry]=React.useState('');
     const [passengerID, setPassengerID]=React.useState('10001');
 
-    
+    const { id, flight, from, to , departure} = useParams();
 
     Axios.post('http://localhost:3001/findDetails', {
         passengerID:passengerID

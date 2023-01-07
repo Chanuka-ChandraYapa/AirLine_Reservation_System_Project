@@ -115,7 +115,7 @@ function NavBar() {
               color="text.primary"           
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/GuestSearch");}}
+              onClick={()=>{navigate("/Guest/guest/GuestSearch");}}
             >
               Search Flight
             </Button>

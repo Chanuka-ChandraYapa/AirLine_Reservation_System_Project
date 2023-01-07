@@ -22,7 +22,7 @@ import InputLabel from '@mui/material/InputLabel';
 import {useState} from 'react';
 import Axios, * as others from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 
 
 
@@ -119,12 +119,12 @@ export default function Search() {
     to: to_airport,
   };
   
-  
+  const { user, id, search} = useParams();
   
 
   let navigate = useNavigate(); 
   function onNavigateBooking(flight,departure) {
-    navigate('/Booking/'+flight+ '/' + params.from+'/'+params.to +'/'+departure );
+    navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure );
   }
   // + JSON.stringify(params)
   

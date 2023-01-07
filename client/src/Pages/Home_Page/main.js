@@ -134,7 +134,7 @@ function Main() {
                     color="info"
                     size="large"
                     variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
-                    onClick={()=>{navigate("/Guest");}}
+                    onClick={()=>{navigate("/Guest/guest");}}
                     >
 
               Proceed as a guest
