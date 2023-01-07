@@ -29,7 +29,7 @@ export default function HomePage() {
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
-        <Route path="/Booking/:ID" element={<Booking/>}/>
+        <Route path="/Booking/:flight/:from/:to/:departure" element={<Booking/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest" element={<GuestHome/>} />
         <Route path="/Admin" element={<AdminHome/>} />

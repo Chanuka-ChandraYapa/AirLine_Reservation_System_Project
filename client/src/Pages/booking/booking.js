@@ -46,15 +46,15 @@ const theme = createTheme();
 
 export default function Booking() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const { id, name, category } = useParams();
+  const { flight, from, to , departure} = useParams();
   const flightdetails = [
-    { name: 'Flight', detail: '0001' },
-    { name: 'From', detail: 'BIA' },
-    { name: 'To', detail: id },
-    { name: 'Departure Time', detail: '1200h' },
+    { name: 'Flight', detail: flight },
+    { name: 'From', detail: from },
+    { name: 'To', detail: to },
+    { name: 'Departure Time', detail: departure },
   ];  
 
-  
+ 
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

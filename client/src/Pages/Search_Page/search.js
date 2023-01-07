@@ -115,19 +115,18 @@ export default function Search() {
   };
   const [state,setState]=React.useState('CGK');
   const params = {
-    id: 123,
-    name: 'John',
-    category: 'shoes'
+    from: from_airport,
+    to: to_airport,
   };
   
   
   
 
   let navigate = useNavigate(); 
-  function onNavigateBooking() {
-    navigate('/Booking/' + JSON.stringify(params));
+  function onNavigateBooking(flight,departure) {
+    navigate('/Booking/'+flight+ '/' + params.from+'/'+params.to +'/'+departure );
   }
-
+  // + JSON.stringify(params)
   
 
 
@@ -229,7 +228,7 @@ export default function Search() {
               <StyledTableCell align="right">{to_airport}</StyledTableCell>
               <StyledTableCell align="right">{row.starting_time}</StyledTableCell>
               <StyledTableCell align="right">{row.stopping_time}</StyledTableCell>
-              <StyledTableCell align="right"><Button variant="outlined" onClick={onNavigateBooking}>Book</Button></StyledTableCell>
+              <StyledTableCell align="right"><Button variant="outlined" onClick={() => onNavigateBooking(row.flight_ID,row.starting_time)}>Book</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
