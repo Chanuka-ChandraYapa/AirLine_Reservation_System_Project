@@ -1,4 +1,3 @@
-
 /*
   _        _                           
  | |      (_)                          
@@ -10,6 +9,7 @@
              |___/ |___/               
 */
 DROP TRIGGER IF EXISTS booking_after_insert;
+DROP TRIGGER IF EXISTS update_user_type;
 DROP TRIGGER IF EXISTS flight_schedule_after_insert;
 DROP TRIGGER IF EXISTS flight_schedule_after_delete;
 
@@ -60,29 +60,16 @@ END$$
 DELIMITER ;
 
 
-/*---------------------------------update_Register_user_Type--------------------------------------------
+/*---------------------------------update_Register_user_Type--------------------------------------------*/
 
 DELIMITER $$
-DROP TRIGGER IF EXISTS booking_after_typechange;
-
-CREATE TRIGGER booking_after_typechange
-	AFTER INSERT ON booking
-    FOR EACH ROW
+CREATE TRIGGER update_user_type
+BEFORE UPDATE ON booking
+FOR EACH ROW
 BEGIN
-	 IF (NEW.num_of_times_booked >= 20) THEN
-        UPDATE register_user SET type_ID = 2 WHERE passenger_ID = NEW.passenger_ID;
-        RETURN NULL;
-    ELSIF (NEW.no_of_bookings >= 15) THEN
-        UPDATE register_user SET type_ID = 1 WHERE passenger_ID = NEW.passenger_ID;
-        RETURN NULL;
-    END IF;
-    RETURN NULL;
-END $$
-
-*/
-
-
-
+	CALL update_user_type(NEW.passenger_ID);
+END$$
+DELIMITER ;
 
 
 
