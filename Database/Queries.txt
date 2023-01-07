@@ -48,3 +48,9 @@ where am.model_ID="B757"
 select address,city,country,postal_code
 from register_user
 where passenger_ID="10001"
+
+
+
+select first_name,last_name
+from passenger
+where passenger_ID="10001"

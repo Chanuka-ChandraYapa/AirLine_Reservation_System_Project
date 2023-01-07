@@ -22,6 +22,8 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const steps = ['General Information', 'Passenger Information', 'Payment Details'];
 
@@ -40,15 +42,19 @@ function getStepContent(step) {
 
 const theme = createTheme();
 
-const flightdetails = [
-    { name: 'Flight', detail: '0001' },
-    { name: 'From', detail: 'BIA' },
-    { name: 'To', detail: 'MAA' },
-    { name: 'Departure Time', detail: '1200h' },
-  ];
+
 
 export default function Booking() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { id, name, category } = useParams();
+  const flightdetails = [
+    { name: 'Flight', detail: '0001' },
+    { name: 'From', detail: 'BIA' },
+    { name: 'To', detail: id },
+    { name: 'Departure Time', detail: '1200h' },
+  ];  
+
+  
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -63,7 +69,7 @@ export default function Booking() {
       <CssBaseline />
       <Container component="main" maxWidth="md" sx={{ mb: 4, alignItems: 'flex-start' }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-            <Typography component="h5" variant="h5" align="center">
+            <Typography component="h5" variant="h5" align="center" on>
                 Flight Details
             </Typography>
             

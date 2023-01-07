@@ -1,17 +1,11 @@
-/*
-  _        _                           
- | |      (_)                          
- | |_ _ __ _  __ _  __ _  ___ _ __ ___ 
- | __| '__| |/ _` |/ _` |/ _ \ '__/ __|
- | |_| |  | | (_| | (_| |  __/ |  \__ \
-  \__|_|  |_|\__, |\__, |\___|_|  |___/
-              __/ | __/ |              
-             |___/ |___/               
-*/
+
+====================Triger======================================
+
+
 DROP TRIGGER IF EXISTS booking_after_insert;
 DROP TRIGGER IF EXISTS flight_schedule_after_insert;
 
-/*-------------------------------udate_number_of_times_books_by_register_user-------------------------*/
+/*-------------------------------update_number_of_times_books_by_register_user-------------------------*/
 
 DELIMITER $$
 CREATE TRIGGER booking_after_insert

@@ -18,20 +18,22 @@ export default function AddressForm() {
     const [country,setCountry]=React.useState('');
     const [passengerID, setPassengerID]=React.useState('10001');
 
+    
+
     Axios.post('http://localhost:3001/findDetails', {
         passengerID:passengerID
        }).then((response) => { 
         setAddress(response.data[0].address);
         setCity(response.data[0].city);
         setCountry(response.data[0].country);
-        setPostalCode(response.data[0].postal_code);
-        console.log(response.data[0].postal_Code);    
+        setPostalCode(response.data[0].postal_code);         
       });
 
       Axios.post('http://localhost:3001/findDetailsPassenger', {
         passengerID:passengerID
        }).then((response) => { 
-          
+        setFirstName(response.data[0].first_name);
+        setLastName(response.data[0].last_name);          
       });
 
   const handleChange = (event) => {

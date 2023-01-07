@@ -77,6 +77,9 @@ export default function PaymentForm() {
             autoComplete="birthDate"
             type= "date"
             variant="standard"
+            InputLabelProps={{
+              shrink:true
+            }}
           />
         </Grid>
         <Grid item xs={12}>

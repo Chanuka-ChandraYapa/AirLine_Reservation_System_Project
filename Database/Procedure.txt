@@ -30,7 +30,7 @@ end $$
 
 
 
-==================
+==================The procedure to delete flight schedule====================================================
 
 
 
@@ -46,3 +46,34 @@ begin
 		SET MESSAGE_TEXT = 'Error: The flight schedule does not exit';
 	end if;
 end; $$
+
+
+
+=========================The procedure to add staff member ====================================================
+
+
+DELIMITER $$
+create procedure register_staff_member(
+	p_emp_id char(6),
+	p_password varchar(255),
+	p_first_name varchar(127),
+	p_last_name varchar(127),
+	p_contact_no varchar(15),
+	p_email varchar(70),
+	p_dob date,
+	p_gender varchar(200),
+	p_country varchar(30),
+    p_username varchar(30))
+begin
+	declare temp_staff_id varchar(6);
+    select emp_id into temp_staff_id from staff where emp_id=p_emp_id;
+    if (temp_staff_id is null) then
+		insert into staff values(p_emp_id,p_password,p_first_name,p_last_name,p_contact_no,p_email,p_dob,p_gender,p_country,p_username);
+	else
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error: The give staff ID is exist in the database.';
+	end if;
+end; $$
+
+
+

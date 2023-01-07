@@ -21,6 +21,11 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import {useState} from 'react';
 import Axios, * as others from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
 
 const theme = createTheme();
 
@@ -108,6 +113,22 @@ export default function Search() {
   const handleChange2 = (event) => {
     setTo_airport(event.target.value);
   };
+  const [state,setState]=React.useState('CGK');
+  const params = {
+    id: 123,
+    name: 'John',
+    category: 'shoes'
+  };
+  
+  
+  
+
+  let navigate = useNavigate(); 
+  function onNavigateBooking() {
+    navigate('/Booking/' + JSON.stringify(params));
+  }
+
+  
 
 
   return (
@@ -208,7 +229,7 @@ export default function Search() {
               <StyledTableCell align="right">{to_airport}</StyledTableCell>
               <StyledTableCell align="right">{row.starting_time}</StyledTableCell>
               <StyledTableCell align="right">{row.stopping_time}</StyledTableCell>
-              <StyledTableCell align="right"><Button variant="outlined">Book</Button></StyledTableCell>
+              <StyledTableCell align="right"><Button variant="outlined" onClick={onNavigateBooking}>Book</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
