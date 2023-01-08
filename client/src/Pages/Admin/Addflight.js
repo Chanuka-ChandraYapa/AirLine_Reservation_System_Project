@@ -81,6 +81,7 @@ export default function AddFlight() {
     const [origin,setOrigin]=useState("");
     const [destination,setDestination]=useState("");
     const [duration,setDuration]=useState("");
+    const [adder,setAdder]=useState("");
 
     const searchflight = () =>{
       Axios.post('http://localhost:3001/flightDetails', {   
@@ -91,6 +92,15 @@ export default function AddFlight() {
         setDestination(response.data[0].destination);
         setDuration(response.data[0].duration);
         console.log(response);     
+    });
+
+      Axios.post('http://localhost:3001/addSchedule', {   
+      flight:flight,  
+      airplane:airplane,
+      time:time,
+      date:date   
+       }).then((response) => {       
+        setAdder("Flight Schedule is successfully added!");
     });
     }
     
@@ -231,7 +241,7 @@ export default function AddFlight() {
             
           </Box>
         </Box>
-       
+        <h2>{adder}</h2>
       </Container>
     </ThemeProvider>
   );

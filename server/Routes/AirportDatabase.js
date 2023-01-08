@@ -6,7 +6,7 @@ const db=mysql.createConnection({
     user: 'root',
     host: '127.0.0.1',
     password: 'Group_project_24',
-    database: 'airline_reservation_system',
+    database: 'airline_reservation_system_2',
 });
 
 router.get('/', (req, res) => {

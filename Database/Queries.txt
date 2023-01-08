@@ -50,6 +50,9 @@ from register_user
 where passenger_ID="10001"
 
 
+call airline_reservation_system_2.insert_flight_schedule('3345', '02', '22:07:05', '2023-01-01');
+
+
 
 select first_name,last_name
 from passenger

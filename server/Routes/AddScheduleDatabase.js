@@ -9,8 +9,8 @@ const db=mysql.createConnection({
     database: 'airline_reservation_system_2',
 });
 
-router.get('/', (req, res) => {    
-    db.query('select p.first_name,p.last_name,p.passenger_ID,p.passport_number from passenger p left join booking b on p.passenger_ID=b.passenger_ID left join flight_schedule fs on b.schedule_ID=fs.schedule_ID left join flight f on fs.flight_ID=f.flight_ID where f.flight_ID="'+req.query.flight+'"', (error, results) => {
+router.post('/', (req, res) => {    
+    db.query("call airline_reservation_system_2.insert_flight_schedule('"+req.body.flight+"', '"+req.body.airplane+"', '"+req.body.time+"', '"+req.body.date+"');", (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));
     });
