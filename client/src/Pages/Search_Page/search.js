@@ -124,7 +124,12 @@ export default function Search() {
 
   let navigate = useNavigate(); 
   function onNavigateBooking(flight,departure) {
+    if(id !== 'guest'){
     navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure );
+    }
+    else{
+    navigate('/GuestBooking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure );
+    }
   }
   // + JSON.stringify(params)
   

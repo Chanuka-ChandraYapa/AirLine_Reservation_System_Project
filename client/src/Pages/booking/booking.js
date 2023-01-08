@@ -37,6 +37,15 @@ function GetStepContent(step) {
       return <PaymentForm num={num}/>;
     case 2:
       return <Review />;
+    case 3:
+      return <>
+        <Typography variant="h5" gutterBottom>
+          Your booking is successfully completed ! We'll see you in the flight.
+        </Typography>
+        <Typography variant="subtitle1">
+          Thank you for your faith on us! We are looking forward to serve you at our best.
+        </Typography>
+      </>
     default:
       throw new Error('Unknown step');
   }
@@ -71,7 +80,8 @@ export default function Booking() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="md" sx={{ mb: 4, alignItems: 'flex-start' }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+      <Box m={2} pt={3}>
+        <Paper variant="outlined" sx={{my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }}}>
             <Typography component="h5" variant="h5" align="center" on>
                 Flight Details
             </Typography>
@@ -90,6 +100,7 @@ export default function Booking() {
             ))}
           </Grid>
       </Paper>
+      </Box>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Booking
@@ -103,12 +114,7 @@ export default function Booking() {
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Your booking is successfully completed ! We'll see you in the flight.
-              </Typography>
-              <Typography variant="subtitle1">
-                Thank you for your faith on us! We are looking forward to serve you at our best.
-              </Typography>
+             {GetStepContent(3)} 
             </React.Fragment>
           ) : (
             <React.Fragment>

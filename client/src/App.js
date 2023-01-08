@@ -31,7 +31,8 @@ export default function HomePage() {
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
-        <Route path="/Booking/:id/:flight/:from/:to/:departure" element={<Booking/>}/>
+        <Route path="/Booking/:id/:flight/:from/:to/:departure" element={<UserBooking/>}/>
+        <Route path="/GuestBooking/:id/:flight/:from/:to/:departure" element={<GuestBooking/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest/:id" element={<GuestHome/>} />
         <Route path="/Admin" element={<AdminHome/>} />
@@ -202,4 +203,18 @@ function UserTeam(){
     <Model1/>
     </>
   )
+}
+
+function GuestBooking(){
+  return(<>
+  <NavigationBarGuest/>
+  <Booking/>
+  </>)
+}
+
+function UserBooking(){
+return(<>
+  <NavigationBarUser/>
+  <Booking/>
+  </>)
 }
