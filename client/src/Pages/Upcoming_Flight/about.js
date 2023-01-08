@@ -7,9 +7,11 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Image from './air.jpg';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 function MainFeaturedPost() {
+  let navigate=useNavigate();
 
     return (
     <main>
@@ -65,6 +67,7 @@ function MainFeaturedPost() {
             <Typography align='center'>
             <Button color="info"
                     size="large"
+                    onClick={()=>{navigate("/About");}}
                     variant="contained" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
               Continue Reading.....
             </Button>
