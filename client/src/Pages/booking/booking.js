@@ -29,7 +29,7 @@ import { useEffect,useState } from 'react';
 const steps = ['General Information', 'Passenger Information', 'Payment Details'];
 
 function GetStepContent(step) {
-  const [num,setNum] = React.useState(2);
+  const [num,setNum] = React.useState(1);
   switch (step) {
     case 0:
       return <AddressForm callback={setNum}/>;
@@ -55,8 +55,6 @@ export default function Booking() {
     { name: 'To', detail: to },
     { name: 'Departure Time', detail: departure },
   ];  
-
-  const [num,setNum] = React.useState(2);
  
 
   const handleNext = () => {

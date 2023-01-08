@@ -41,13 +41,13 @@ export default function HomePage() {
         <Route path="/AdminAddFlight" element={<AdminAddFlight/>} />
         <Route path="/User/:id/UserSearch" element={<UserSearchPage/>} />
         <Route path="/About" element={<About/>}/>
-        <Route path="/GuestAbout" element={<GuestAbout/>}/>
+        <Route path="/Guest/:id/GuestAbout" element={<GuestAbout/>}/>
         <Route path="/AdminAbout" element={<AdminAbout/>}/>
-        <Route path="/UserAbout" element={<UserAbout/>}/>
+        <Route path="/User/:id/UserAbout" element={<UserAbout/>}/>
         <Route path="/Team" element={<Team/>}/>
-        <Route path="/GuestTeam" element={<GuestTeam/>}/>
+        <Route path="/Guest/:id/GuestTeam" element={<GuestTeam/>}/>
         <Route path="/AdminTeam" element={<AdminTeam/>}/>
-        <Route path="/UserTeam" element={<UserTeam/>}/>
+        <Route path="/User/:id/UserTeam" element={<UserTeam/>}/>
 
       </Routes>
       <Scroller/>

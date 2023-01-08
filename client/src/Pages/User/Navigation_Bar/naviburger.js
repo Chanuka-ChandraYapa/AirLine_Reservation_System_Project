@@ -108,7 +108,7 @@ function NavBar() {
               color="text.primary"           
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/UserAbout");}}
+              onClick={()=>{navigate("/User/"+ id +"/UserAbout");}}
             >
               About
             </Button>
@@ -117,7 +117,7 @@ function NavBar() {
               color="text.primary"          
               sx={{ my: 1, mx: 1.5 }}
               style={{ color: 'inherit', textDecoration: 'inherit'}}
-              onClick={()=>{navigate("/UserTeam");}}
+              onClick={()=>{navigate("/User/"+ id +"/UserTeam");}}
             >
               Team
             </Button>
