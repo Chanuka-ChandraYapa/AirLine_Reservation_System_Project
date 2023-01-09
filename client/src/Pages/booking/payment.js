@@ -60,7 +60,7 @@ export default function PaymentForm({num}) {
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
-          <TextField
+          <TextField onChange={(event)=>{setFirstName(event.target.value)}}
             required
             id="firstName"
             name="firstName"
@@ -69,11 +69,12 @@ export default function PaymentForm({num}) {
             autoComplete="given-name"
             key={firstName}
             defaultValue={firstName}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
+          <TextField onChange={(event)=>{setLastName(event.target.value)}}
             required
             id="lastName"
             name="lastName"
@@ -82,11 +83,12 @@ export default function PaymentForm({num}) {
             autoComplete="family-name"
             key={lastName}
             defaultValue={lastName}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
+          <TextField onChange={(event)=>{setPassport(event.target.value)}}
             required
             id="PassportNumber"
             label="Passport Number"
@@ -94,11 +96,12 @@ export default function PaymentForm({num}) {
             autoComplete="pp-number"
             key={passport}
             defaultValue={passport}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
+          <TextField onChange={(event)=>{setBirthday(event.target.value)}}
             required
             id="birthDate"
             label="Date of Birth"
@@ -106,8 +109,8 @@ export default function PaymentForm({num}) {
             autoComplete="birthDate"
             type= "date"
             variant="standard"
-            key={birthday}
-            defaultValue={birthday}
+            
+            autoFocus
             InputLabelProps={{
               shrink:true
             }}
