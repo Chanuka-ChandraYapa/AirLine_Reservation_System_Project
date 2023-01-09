@@ -23,7 +23,8 @@ export default function AddressForm() {
 
     const { id, flight, from, to , departure} = useParams();
 
-    Axios.post('http://localhost:3001/findDetails', {
+    if (id!="guest"){
+      Axios.post('http://localhost:3001/findDetails', {
         passengerID:id
        }).then((response) => { 
         setAddress(response.data[0].address);
@@ -31,13 +32,17 @@ export default function AddressForm() {
         setCountry(response.data[0].country);
         setPostalCode(response.data[0].postal_code);         
       });
-
-      Axios.post('http://localhost:3001/findDetailsPassenger', {
+      console.log(id);
+      Axios.post('http://localhost:3001/findPassengerDe', {
         passengerID:id
        }).then((response) => { 
         setFirstName(response.data[0].first_name);
-        setLastName(response.data[0].last_name);          
+        setLastName(response.data[0].last_name);         
       });
+
+    }
+    
+
 
   const handleChange = (event) => {
     setNum(event.target.value);

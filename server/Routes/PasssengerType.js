@@ -4,13 +4,12 @@ const mysql=require('mysql');
 
 const db=mysql.createConnection({
   user: 'root',
-  host: 'localhost',
-  password: 'password',
-  database: 'airline_reservation_system',
+  host: '127.0.0.1',
+  password: 'Group_project_24',
+  database: 'airline_reservation_system_2',
 });
-
 router.post('/', (req, res) => {    
-    db.query('select first_name,last_name,passport_number,birthday from passenger where passenger_ID="'+req.body.passengerID+'"', (error, results) => {
+    db.query('select Type,discount from passenger_type pt left join register_user r on pt.type_ID=r.type_ID where r.passenger_ID="'+req.body.id+'"', (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));
     });

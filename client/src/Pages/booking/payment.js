@@ -42,15 +42,19 @@ export default function PaymentForm({callback}) {
   const [birthday, setBirthday]=React.useState('');
 
   const { id, flight, from, to , departure} = useParams();
-  Axios.post('http://localhost:3001/findDetailsPassenger', {
-    passengerID:id
-   }).then((response) => { 
-    setFirstName(response.data[0].first_name);
-    setLastName(response.data[0].last_name);    
-    setPassport(response.data[0].passport_number);   
-    setBirthday(response.data[0].birthday);
-  });
+  if (id!="guest"){   
+    console.log(id);
+    Axios.post('http://localhost:3001/findPassengerDe', {
+      passengerID:id
+     }).then((response) => { 
+      setFirstName(response.data[0].first_name);
+      setLastName(response.data[0].last_name); 
+      setBirthday(response.data[0].birthday);
+      setPassport(response.data[0].passport_number);      
+    });
 
+  }
+ 
 
   return (
     <React.Fragment>
@@ -109,7 +113,7 @@ export default function PaymentForm({callback}) {
             fullWidth
             autoComplete="birthDate"
             type= "date"
-            variant="standard"
+            variant="standard"         
             
             autoFocus
             InputLabelProps={{

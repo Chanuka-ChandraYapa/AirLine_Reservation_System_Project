@@ -30,17 +30,19 @@ export default function Review({type}) {
   const [lastName, setLastName]=React.useState('');
   const [discount, setDiscount] = React.useState(0);
   const [passengertype, setPassengertype] = React.useState('');
-  const [price, setPrice] = React.useState(0);  
-  Axios.post('http://localhost:3001/findDetailsPassenger', {
-        passengerID:id
-       }).then((response) => { 
-        setFirstName(response.data[0].first_name);
-        setLastName(response.data[0].last_name);
-        // setDiscount(0.5);
-        // setPrice(550);
-                  
-      });
-      
+  const [price, setPrice] = React.useState(100);  
+
+  if (id!="guest"){   
+    console.log(id);
+    Axios.post('http://localhost:3001/findPassengerDe', {
+      passengerID:id
+     }).then((response) => { 
+      setFirstName(response.data[0].first_name);
+      setLastName(response.data[0].last_name);         
+    });
+
+  }
+ 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -50,7 +52,7 @@ export default function Review({type}) {
         {details.map((passenger) => (
           <ListItem key={passenger.name} sx={{ py: 1, px: 0 }}>
             <ListItemText primary={"Passenger : " + firstName +" " + lastName} secondary={type} />
-            <Typography variant="body2">{price+" price comes here"} $</Typography>
+            <Typography variant="body2">{price} $</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>

@@ -21,13 +21,14 @@ const getTotalRevenue=require('./Routes/TotalRevenue');
 const getSearchFlight=require('./Routes/SearchFlightDatabase');
 const getSignInAdmin=require('./Routes/SignInAdminDatabase');
 const getUserDetails=require('./Routes/FindUserDetails');
-const getPassengerDetails=require('./Routes/FindPassengerDetails');
 const getPassengerID=require('./Routes/PassengerID');
 const getFlightID=require('./Routes/FlightIDDatabase');
 const getAirportCode=require('./Routes/AirportID');
 const getFlightdetails=require('./Routes/FlightDetails');
 const getAddGuestUser=require('./Routes/AddGuestUser');
 const getADDFlightSchedule=require('./Routes/AddScheduleDatabase');
+const getFindPassengerType=require('./Routes/PasssengerType');
+const getFingPassengerDetails=require('./Routes/FindDetailsOfPassengers');
 
 
 app.use('/create',signInRoute);
@@ -46,13 +47,14 @@ app.use('/totalRevenue',getTotalRevenue);
 app.use('/searchflight',getSearchFlight);
 app.use('/adminSignIn',getSignInAdmin);
 app.use('/findDetails',getUserDetails);
-app.use('/findDetailsPassenger',getPassengerDetails);
 app.use('/getID',getPassengerID);
 app.use('/findFlightID',getFlightID);
 app.use('/airportID',getAirportCode);
 app.use('/flightDetails',getFlightdetails);
 app.use('/addGuestUser',getAddGuestUser);
 app.use('/addSchedule',getADDFlightSchedule);
+app.use('/passengerType',getFindPassengerType);
+app.use('/findPassengerDe',getFingPassengerDetails);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");
