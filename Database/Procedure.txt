@@ -91,8 +91,7 @@ end; $$
 
 
 
-DELIMITER $$
-create procedure insert_flight_schedule(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_flight_schedule`(
     p_flight_ID varchar(15),
     p_airplane_ID	varchar(15),
     p_starting_time time,
@@ -103,24 +102,23 @@ begin
     declare p_stopping_time time;
     declare d_Duration time;
     declare d_count int;
-    select schedule_ID into last_schedule_id from flight_schedule ORDER BY schedule_ID DESC LIMIT 1;
-    SET last_schedule_id= CAST(SUBSTRING(last_schedule_id, 2, LENGTH(last_schedule_id) - 2) AS UNSIGNED) + 1;
+    declare Added varchar(50);
+    start transaction;
+    select schedule_ID into last_schedule_id from flight_schedule ORDER BY schedule_ID DESC LIMIT 1;    
+    SELECT CAST(CAST(last_schedule_id AS UNSIGNED) + 1 AS CHAR) into last_schedule_id;
     select duration into d_Duration from flight where flight_ID=p_flight_ID;
     select airline_reservation_system.Stopping_date(p_starting_date, p_starting_time, d_Duration) into p_stopping_date;
     select airline_reservation_system.Stopping_time(p_starting_date,  p_starting_time, d_Duration) into p_stopping_time;
-    select count(*) into d_count from flight_schedule where airplane_ID=p_airplane_ID and (starting_date=p_starting_date and starting_time between p_starting_time and p_stopping_time) or (starting_date=p_starting_date and stopping_time between p_starting_time and p_stopping_time);
+    select count(*) into d_count from flight_schedule where airplane_ID=p_airplane_ID and ((starting_date=p_starting_date and starting_time between p_starting_time and p_stopping_time) or (starting_date=p_starting_date and stopping_time between p_starting_time and p_stopping_time));
     if d_count=0 then
 		insert into flight_schedule values(last_schedule_id,p_flight_ID,p_airplane_ID,p_starting_time,p_starting_date,p_stopping_date,p_stopping_time);
-    else
-		SIGNAL SQLSTATE '45000'
-		SET MESSAGE_TEXT = 'Error: The flight can not be assign.';
-	end if;
-	select d_Duration,p_stopping_date,p_stopping_time;
-end; $$
-
-
-
-
+        select "Flight schedule is assigned" into Added;
+	else
+		select "Flight schedule can not be assigned" into Added;
+	end if;	
+    select Added;
+    commit;
+end
 
 
 ==========================Procedure to add guest user==================================================================================
