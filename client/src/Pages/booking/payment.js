@@ -26,7 +26,8 @@ export default function PaymentForm({callback}) {
     const [row, setRow] = React.useState('');
   const handleChange1 = (event) => {
     setType(event.target.value);
-    callback(event.target.value);
+    callback(event.target.value);   
+    ADDGuestUser();
   };
   const handleChange2 = (event) => {
     setColumn(event.target.value);
@@ -54,7 +55,23 @@ export default function PaymentForm({callback}) {
     });
 
   }
- 
+  const ADDGuestUser=()=>{  
+    if (id==="guest"){
+      if (firstName && lastName && passport && birthday) {        
+        Axios.post('http://localhost:3001/addGuestUser', {
+        firstName:firstName,
+        lastName:lastName,
+        passportNumber:passport,
+        birthday:birthday
+       }).then((response) => { 
+
+      });
+       
+      }
+      
+    }
+    
+  }
 
   return (
     <React.Fragment>
@@ -113,8 +130,7 @@ export default function PaymentForm({callback}) {
             fullWidth
             autoComplete="birthDate"
             type= "date"
-            variant="standard"         
-            
+            variant="standard"   
             autoFocus
             InputLabelProps={{
               shrink:true

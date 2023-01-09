@@ -17,7 +17,7 @@ router.post('/',(req,res)=>{
     const lastName=req.body.lastName
     const passportNumber=req.body.passportNumber
     const birthday=req.body.birthday
-
+   
 
     const calculateAge = (birthday) => {
         const currentDate = new Date();
@@ -32,7 +32,7 @@ router.post('/',(req,res)=>{
   
 
    
-    db.query("call add_geust_user('"+firstName+"', '"+lastName+"', '"+passportNumber+"', '"+birthday+"');", (error, results) => {      
+    db.query("call add_geust_user('"+firstName+"', '"+lastName+"', '"+passportNumber+"', '"+birthday+"', '"+age+"');", (error, results) => {      
         res.send(results);
     });   
 });

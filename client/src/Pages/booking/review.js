@@ -32,15 +32,24 @@ export default function Review({type}) {
   const [passengertype, setPassengertype] = React.useState('');
   const [price, setPrice] = React.useState(100);  
 
-  if (id!="guest"){   
-    console.log(id);
-    Axios.post('http://localhost:3001/findPassengerDe', {
+  Axios.post('http://localhost:3001/findPassengerDe', {
+    passengerID:id
+   }).then((response) => { 
+    setFirstName(response.data[0].first_name);
+    setLastName(response.data[0].last_name);         
+  });
+
+
+  if (id!="guest"){ 
+    Axios.post('http://localhost:3001/passengerType', {
       passengerID:id
      }).then((response) => { 
-      setFirstName(response.data[0].first_name);
-      setLastName(response.data[0].last_name);         
+      setDiscount(response.data[0].discount);
+      setPassengertype(response.data[0].Type);    
     });
 
+  }else{
+    setPassengertype("Guest");
   }
  
   return (
@@ -56,15 +65,15 @@ export default function Review({type}) {
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
-        <ListItemText primary="Discount"  secondary={passengertype + "Passenger Type comes here"}/>
+        <ListItemText primary="Discount"  secondary={passengertype}/>
           <Typography variant="body2" sx={{ fontWeight: 700 }}>
-            Discount comes here {discount}
+            {discount*price} $
           </Typography>
         </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            {discount * price} $
+            <h3>{price-discount * price} $</h3>
           </Typography>
         </ListItem>
       </List>

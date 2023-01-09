@@ -9,8 +9,7 @@ const db=mysql.createConnection({
     database: 'airline_reservation_system_2',
 });
 
-router.post('/', (req, res) => {   
-    console.log(req.body.passengerID); 
+router.post('/', (req, res) => {      
     db.query('select first_name,last_name,passport_number,birthday from passenger where passenger_ID="'+req.body.passengerID+'"', (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));
