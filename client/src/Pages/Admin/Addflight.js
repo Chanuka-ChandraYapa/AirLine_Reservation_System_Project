@@ -83,11 +83,22 @@ export default function AddFlight() {
     const [duration,setDuration]=useState("");
     const [adder,setAdder]=useState("");
 
+    const giveflight = (event) =>{
+      Axios.post('http://localhost:3001/flightDetails', {   
+      flight:event.target.value    
+       }).then((response) => {  
+        setFlight(event.target.value);
+        setOrigin(response.data[0].origin);
+        setDestination(response.data[0].destination);
+        setDuration(response.data[0].duration);
+        console.log(response);     
+    });
+    }
     const searchflight = () =>{
       Axios.post('http://localhost:3001/flightDetails', {   
       flight:flight     
        }).then((response) => {  
-        setAirplane(response.data[0].flight_ID);
+        
         setOrigin(response.data[0].origin);
         setDestination(response.data[0].destination);
         setDuration(response.data[0].duration);
@@ -170,7 +181,7 @@ export default function AddFlight() {
                     value={flight}
                     name="flight"
                     label="flight"
-                    onChange={(event)=>{setFlight(event.target.value)}}
+                    onChange={(event)=>{giveflight(event)}}
                   >
                     {Flight.map((test)=><MenuItem value={test}>{test}</MenuItem>)}
                   </Select>
