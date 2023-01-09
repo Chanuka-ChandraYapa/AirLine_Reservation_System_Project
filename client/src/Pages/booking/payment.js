@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import Axios, * as others from 'axios';
+import { useParams } from 'react-router';
 
 
 const MenuProps = {
@@ -33,12 +35,28 @@ export default function PaymentForm({num}) {
   };
 
   
+  const [firstName, setFirstName]=React.useState('');
+  const [lastName, setLastName]=React.useState('');
+  const [passport, setPassport]=React.useState('');
+  const [birthday, setBirthday]=React.useState('');
+
+  const { id, flight, from, to , departure} = useParams();
+  Axios.post('http://localhost:3001/findDetailsPassenger', {
+    passengerID:id
+   }).then((response) => { 
+    setFirstName(response.data[0].first_name);
+    setLastName(response.data[0].last_name);    
+    setPassport(response.data[0].passport_number);   
+    setBirthday(response.data[0].birthday);
+  });
+
+
   return (
     <React.Fragment>
         
       <div >
       <Typography variant="h6" gutterBottom>
-        Passenger 1
+        Passenger details
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
@@ -49,6 +67,8 @@ export default function PaymentForm({num}) {
             label="First name"
             fullWidth
             autoComplete="given-name"
+            key={firstName}
+            defaultValue={firstName}
             variant="standard"
           />
         </Grid>
@@ -60,6 +80,8 @@ export default function PaymentForm({num}) {
             label="Last name"
             fullWidth
             autoComplete="family-name"
+            key={lastName}
+            defaultValue={lastName}
             variant="standard"
           />
         </Grid>
@@ -70,6 +92,8 @@ export default function PaymentForm({num}) {
             label="Passport Number"
             fullWidth
             autoComplete="pp-number"
+            key={passport}
+            defaultValue={passport}
             variant="standard"
           />
         </Grid>
@@ -82,6 +106,8 @@ export default function PaymentForm({num}) {
             autoComplete="birthDate"
             type= "date"
             variant="standard"
+            key={birthday}
+            defaultValue={birthday}
             InputLabelProps={{
               shrink:true
             }}
