@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import Axios, * as others from 'axios';
+import { useParams } from 'react-router';
 
 
 const MenuProps = {
@@ -18,12 +20,13 @@ const MenuProps = {
       },
     },
   };
-export default function PaymentForm({num}) {
+export default function PaymentForm({callback}) {
     const [type, setType] = React.useState('');
     const [column, setColumn] = React.useState('');
     const [row, setRow] = React.useState('');
   const handleChange1 = (event) => {
     setType(event.target.value);
+    callback(event.target.value);
   };
   const handleChange2 = (event) => {
     setColumn(event.target.value);
@@ -33,48 +36,73 @@ export default function PaymentForm({num}) {
   };
 
   
+  const [firstName, setFirstName]=React.useState('');
+  const [lastName, setLastName]=React.useState('');
+  const [passport, setPassport]=React.useState('');
+  const [birthday, setBirthday]=React.useState('');
+
+  const { id, flight, from, to , departure} = useParams();
+  Axios.post('http://localhost:3001/findDetailsPassenger', {
+    passengerID:id
+   }).then((response) => { 
+    setFirstName(response.data[0].first_name);
+    setLastName(response.data[0].last_name);    
+    setPassport(response.data[0].passport_number);   
+    setBirthday(response.data[0].birthday);
+  });
+
+
   return (
     <React.Fragment>
-      {new Array(num).fill(0).map((_, index) => (     
-      <div key={index}>
+        
+      <div >
       <Typography variant="h6" gutterBottom>
-        Passenger {index+1}
+        Passenger details
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
-          <TextField
+          <TextField onChange={(event)=>{setFirstName(event.target.value)}}
             required
             id="firstName"
             name="firstName"
             label="First name"
             fullWidth
             autoComplete="given-name"
+            key={firstName}
+            defaultValue={firstName}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
+          <TextField onChange={(event)=>{setLastName(event.target.value)}}
             required
             id="lastName"
             name="lastName"
             label="Last name"
             fullWidth
             autoComplete="family-name"
+            key={lastName}
+            defaultValue={lastName}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
+          <TextField onChange={(event)=>{setPassport(event.target.value)}}
             required
             id="PassportNumber"
             label="Passport Number"
             fullWidth
             autoComplete="pp-number"
+            key={passport}
+            defaultValue={passport}
+            autoFocus
             variant="standard"
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
+          <TextField onChange={(event)=>{setBirthday(event.target.value)}}
             required
             id="birthDate"
             label="Date of Birth"
@@ -82,6 +110,8 @@ export default function PaymentForm({num}) {
             autoComplete="birthDate"
             type= "date"
             variant="standard"
+            
+            autoFocus
             InputLabelProps={{
               shrink:true
             }}
@@ -189,9 +219,9 @@ export default function PaymentForm({num}) {
         ---------------------------------------------------------------------------------------------------------------------
       </Typography>
       </div>
-       ))}
+
       <Typography marginTop={4} variant="h6" gutterBottom>
-        Payment Details
+        Payment Details 
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} md={6}>

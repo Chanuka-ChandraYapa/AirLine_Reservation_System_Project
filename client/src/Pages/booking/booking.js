@@ -29,14 +29,14 @@ import { useEffect,useState } from 'react';
 const steps = ['General Information', 'Passenger Information', 'Payment Details'];
 
 function GetStepContent(step) {
-  const [num,setNum] = React.useState(1);
+  const [type,setType] = React.useState('');
   switch (step) {
     case 0:
-      return <AddressForm callback={setNum}/>;
+      return <AddressForm />;
     case 1:
-      return <PaymentForm num={num}/>;
+      return <PaymentForm callback={setType}/>;
     case 2:
-      return <Review />;
+      return <Review type={type}/>;
     case 3:
       return <>
         <Typography variant="h5" gutterBottom>

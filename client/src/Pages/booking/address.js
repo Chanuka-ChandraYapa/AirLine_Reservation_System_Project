@@ -10,7 +10,7 @@ import Axios, * as others from 'axios';
 import { useParams } from 'react-router';
 
 
-export default function AddressForm({callback}) {
+export default function AddressForm() {
     const [num, setNum] = React.useState('');
     const [firstName, setFirstName]=React.useState('');
     const [lastName, setLastName]=React.useState('');
@@ -41,7 +41,7 @@ export default function AddressForm({callback}) {
 
   const handleChange = (event) => {
     setNum(event.target.value);
-    callback(event.target.value);
+    
   };
   return (
     <React.Fragment>
@@ -155,32 +155,7 @@ export default function AddressForm({callback}) {
             }}
           />
         </Grid >        
-        <Grid item xs={12} sm={4}>
-            <Typography marginTop={3} gutterBottom>
-              No of passengers
-            </Typography>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">No</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={num}
-                    onChange={handleChange}
-                    label="No"
-                    >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-        </Select>
-      </FormControl>
-    </Grid>
+       
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
