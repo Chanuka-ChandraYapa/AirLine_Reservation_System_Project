@@ -35,10 +35,10 @@ export default function PaymentForm({num}) {
   
   return (
     <React.Fragment>
-      {new Array(num).fill(0).map((_, index) => (     
-      <div key={index}>
+        
+      <div >
       <Typography variant="h6" gutterBottom>
-        Passenger {index+1}
+        Passenger 1
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
@@ -189,9 +189,9 @@ export default function PaymentForm({num}) {
         ---------------------------------------------------------------------------------------------------------------------
       </Typography>
       </div>
-       ))}
+
       <Typography marginTop={4} variant="h6" gutterBottom>
-        Payment Details
+        Payment Details 
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
