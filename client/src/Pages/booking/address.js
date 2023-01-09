@@ -10,7 +10,7 @@ import Axios, * as others from 'axios';
 import { useParams } from 'react-router';
 
 
-export default function AddressForm({callback}) {
+export default function AddressForm() {
     const [num, setNum] = React.useState('');
     const [firstName, setFirstName]=React.useState('');
     const [lastName, setLastName]=React.useState('');
@@ -41,7 +41,7 @@ export default function AddressForm({callback}) {
 
   const handleChange = (event) => {
     setNum(event.target.value);
-    callback(event.target.value);
+    
   };
   return (
     <React.Fragment>

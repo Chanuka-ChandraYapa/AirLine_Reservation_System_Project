@@ -20,12 +20,13 @@ const MenuProps = {
       },
     },
   };
-export default function PaymentForm({num}) {
+export default function PaymentForm({callback}) {
     const [type, setType] = React.useState('');
     const [column, setColumn] = React.useState('');
     const [row, setRow] = React.useState('');
   const handleChange1 = (event) => {
     setType(event.target.value);
+    callback(event.target.value);
   };
   const handleChange2 = (event) => {
     setColumn(event.target.value);

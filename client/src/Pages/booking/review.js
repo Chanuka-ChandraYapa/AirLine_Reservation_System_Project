@@ -5,23 +5,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router';
-
+import Axios, * as others from 'axios';
 const details = [
   {
     name: 'passenger 1',
     type: 'Economy',
     price: 45,
   },
-  {
-    name: 'passenger 2',
-    type: 'Platinum',
-    price: 55,
-  },
  
 ];
 
 
-export default function Review() {
+export default function Review({type}) {
 
   const { id,flight, from, to , departure} = useParams();
   const flightdetails = [
@@ -31,7 +26,21 @@ export default function Review() {
     { name: 'Departure Time', detail: departure },
   ];  
 
-
+  const [firstName, setFirstName]=React.useState('');
+  const [lastName, setLastName]=React.useState('');
+  const [discount, setDiscount] = React.useState(0);
+  const [passengertype, setPassengertype] = React.useState('');
+  const [price, setPrice] = React.useState(0);  
+  Axios.post('http://localhost:3001/findDetailsPassenger', {
+        passengerID:id
+       }).then((response) => { 
+        setFirstName(response.data[0].first_name);
+        setLastName(response.data[0].last_name);
+        // setDiscount(0.5);
+        // setPrice(550);
+                  
+      });
+      
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -40,15 +49,20 @@ export default function Review() {
       <List disablePadding>
         {details.map((passenger) => (
           <ListItem key={passenger.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={passenger.name} secondary={passenger.type} />
-            <Typography variant="body2">{passenger.price} $</Typography>
+            <ListItemText primary={"Passenger : " + firstName +" " + lastName} secondary={type} />
+            <Typography variant="body2">{price+" price comes here"} $</Typography>
           </ListItem>
         ))}
-
+        <ListItem sx={{ py: 1, px: 0 }}>
+        <ListItemText primary="Discount"  secondary={passengertype + "Passenger Type comes here"}/>
+          <Typography variant="body2" sx={{ fontWeight: 700 }}>
+            Discount comes here {discount}
+          </Typography>
+        </ListItem>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            {(details.reduce((a,v) =>  a = a + v.price , 0 ))} $
+            {discount * price} $
           </Typography>
         </ListItem>
       </List>
