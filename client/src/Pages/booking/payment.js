@@ -35,7 +35,7 @@ export default function PaymentForm({callback}) {
 
     const [type, setType] = React.useState('');
     const [column, setColumn] = React.useState('');
-    const [row, setRow] = React.useState(0);
+    const [row, setRow] = React.useState();
     const [seatID, setSeatID] = React.useState(0);
   const handleChange1 = (event) => {
     setType(event.target.value);
