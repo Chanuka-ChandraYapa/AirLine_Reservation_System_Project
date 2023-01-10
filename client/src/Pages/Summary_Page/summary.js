@@ -121,7 +121,7 @@ export function Passenger() {
           <Typography component="h0" variant="h5">
             Passengers given a Flight No.
           </Typography>  
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>          
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 , p:4}}>          
           
           <Box sx={{ minWidth: 300 }}>
                 <FormControl fullWidth>
@@ -238,7 +238,7 @@ export function CountPassenger(){
       <Typography component="h1" variant="h6">
         No. of Passengers given a Date Range
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, p:4 }}>
       <Grid container spacing={3}>
     <Grid item xs={12} sm={6}>
       <TextField
@@ -393,7 +393,7 @@ export function Booking(){
     <Typography component="h1" variant="h6">
       No. of Bookings given a Date Range for each passenger type
     </Typography>
-    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, p:4 }}>
     <Grid container spacing={3}>
   <Grid item xs={12} sm={6}>
     <TextField
@@ -506,10 +506,10 @@ export  function PastFlight() {
   
     doc.setFontSize(15);
   
-    const title = "Passenger details of the Flight: " ;
-    const headers = [["Passenger ID", "First Name","Last Name", "Passport Number"]];
+    const title = "Past details of the Flights from "+origin+" to " + dest ;
+    const headers = [["Flight ID", "Starting Time","Starting Date", "Passenger Count"]];
   
-    const data = PastFlight_List.map(elt=> [elt.passenger_ID, elt.first_name, elt.last_name, elt.passport_number]);
+    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date, elt.passport_number]);
   
     let content = {
       startY: 50,
@@ -519,7 +519,7 @@ export  function PastFlight() {
   
     doc.text(title, marginLeft, 40);
     doc.autoTable(content);
-    doc.save("passenger_report.pdf")
+    doc.save("past_flight_report.pdf")
   }
   
   const [isShown4, setIsShown4] = useState(false); 
@@ -582,7 +582,7 @@ export  function PastFlight() {
           <Typography component="h1" variant="h6">
           Details about Past Flights,Given origin and destination
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, p:4}}>
           <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
         <Box sx={{ minWidth: 300 }}>
@@ -630,6 +630,11 @@ export  function PastFlight() {
               sx={{ mt: 3, mb: 2 }}
             >
               Search
+            </Button>
+            <Button type="submit"
+              fullWidth
+              variant="contained"             
+              sx={{ mt: 3, mb: 2 }}onClick={exportPDF}>Generate Report
             </Button>
           </Box>
           <Box
@@ -717,7 +722,7 @@ export function Revenue(){
           <Typography component="h0" variant="h5">
             Total Revenue given Aircraft Type
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, p:4 }}>
             
             <Box sx={{ minWidth: 300 }}>
                 <FormControl fullWidth>
@@ -745,7 +750,7 @@ export function Revenue(){
             >
               Search
             </Button>
-            {isShown5 && (<div><center>Total Revenue : {totalRevenueValue}</center></div>)}
+            {isShown5 && (<div><center>Total Revenue : {totalRevenueValue} $</center></div>)}
           </Box>
         </Box>
   );
