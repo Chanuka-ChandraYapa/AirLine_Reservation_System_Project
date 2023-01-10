@@ -32,7 +32,7 @@ export default function Review({type}) {
   const [passengertype, setPassengertype] = React.useState('');
   const [price, setPrice] = React.useState(100);
 
-  
+ 
     if (id!=="guest"){
       Axios.post('http://localhost:3001/findPassengerDe', {
         passengerID:id
