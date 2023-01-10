@@ -103,16 +103,16 @@ insert into payment values ('004',650.00,29.00);
 insert into payment values ('005',250.00,31.00);
 
 
-insert into flight values ('3745','BIA','BOM','02:45');
-insert into flight values ('3345','HRI','CGK','02:15');
-insert into flight values ('2345','DPS','DEL','02:05');
-insert into flight values ('1234','CGK','SIN','01:45');
-insert into flight values ('9876','MAA','BIA','01:25');
-insert into flight values ('8765','DMK','MAA','03:30');
-insert into flight values ('7654','BKK','DPS','04:55');
-insert into flight values ('6543','BOM','DMK','03:05');
-insert into flight values ('5432','DEL','SIN','05:00');
-insert into flight values ('3832','SIN','MAA','01:25');
+insert into flight values ('3745','BIA','BOM','02:45', 450.00);
+insert into flight values ('3345','HRI','CGK','02:15', 550.00);
+insert into flight values ('2345','DPS','DEL','02:05', 124.00);
+insert into flight values ('1234','CGK','SIN','01:45', 255.70);
+insert into flight values ('9876','MAA','BIA','01:25', 85.00);
+insert into flight values ('8765','DMK','MAA','03:30', 1450.00);
+insert into flight values ('7654','BKK','DPS','04:55', 411.00);
+insert into flight values ('6543','BOM','DMK','03:05', 455.01);
+insert into flight values ('5432','DEL','SIN','05:00', 747.10);
+insert into flight values ('3832','SIN','MAA','01:25', 542.80);
 
 
 
