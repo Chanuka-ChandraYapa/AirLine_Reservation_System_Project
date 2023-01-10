@@ -116,14 +116,25 @@ function Main() {
             </Grid>
         <Grid item xs={12} sm={3}>
           <Typography align='center'>
-            <Button 
-                    sx={{ width: 300, padding: 1, margin: 2 }}
-                    color="info"
-                    size="large"
-                    variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
-                    onClick={()=>{navigate("/SignIn");}}>
+          <Button 
+              sx={{
+                width: 300, 
+                padding: 1, 
+                margin: 2,
+                borderRadius: '50px',
+                fontFamily: 'Arial',
+                ':hover': {
+                    backgroundColor: '#87CEEB',
+                    color: 'black'
+                }
+              }}
+              color="info"
+              size="large"
+              variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
+              onClick={()=>{navigate("/SignIn");}}>
               Login
             </Button>
+
             </Typography>
             </Grid>
 

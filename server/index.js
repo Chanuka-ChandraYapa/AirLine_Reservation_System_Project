@@ -29,6 +29,7 @@ const getAddGuestUser=require('./Routes/AddGuestUser');
 const getADDFlightSchedule=require('./Routes/AddScheduleDatabase');
 const getFindPassengerType=require('./Routes/PasssengerType');
 const getFingPassengerDetails=require('./Routes/FindDetailsOfPassengers');
+const getBookingSeat=require('./Routes/BookingSeatDatabase');
 
 
 app.use('/create',signInRoute);
@@ -55,6 +56,7 @@ app.use('/addGuestUser',getAddGuestUser);
 app.use('/addSchedule',getADDFlightSchedule);
 app.use('/passengerType',getFindPassengerType);
 app.use('/findPassengerDe',getFingPassengerDetails);
+app.use('/bookingSeat',getBookingSeat);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");

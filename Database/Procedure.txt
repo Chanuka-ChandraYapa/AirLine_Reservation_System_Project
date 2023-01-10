@@ -151,3 +151,33 @@ begin
     commit;    
 end $$
 
+
+
+================================The procedure for booking===============================================================================
+
+
+
+
+DELIMITER $$
+create procedure booking_seat(
+	p_passenger_ID	int,
+    p_seat_ID			varchar(15),
+    p_date			date,
+    p_schedule_ID		varchar(15),
+    p_price			numeric(5,2),
+	p_discount		numeric(5,2))
+begin
+	declare last_payment_Id varchar(15);
+    declare p_count int;
+    start transaction;
+    select payment_ID into last_payment_Id from payment ORDER BY payment_ID DESC LIMIT 1;
+    SELECT CAST(CAST(last_payment_Id AS UNSIGNED) + 1 AS CHAR) into last_payment_Id;
+    select count(*) into p_count from booking where schedule_ID=p_schedule_ID and seat_ID=p_seat_ID and date=p_date;
+    if (p_count>0) then
+		select "This seat is already booked!";
+	else
+		insert into payment values(last_payment_Id,p_price,p_discount);
+		insert into booking values(p_schedule_ID,p_seat_ID,p_passenger_ID,p_date,last_payment_Id);        
+	end if;
+    commit;
+end $$
