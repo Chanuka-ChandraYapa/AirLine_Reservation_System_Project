@@ -37,15 +37,6 @@ function GetStepContent(step) {
       return <PaymentForm callback={setType}/>;
     case 2:
       return <Review type={type}/>;
-    case 3:
-      return <>
-        <Typography variant="h5" gutterBottom>
-          Your booking is successfully completed ! We'll see you in the flight.
-        </Typography>
-        <Typography variant="subtitle1">
-          Thank you for your faith on us! We are looking forward to serve you at our best.
-        </Typography>
-      </>
     default:
       throw new Error('Unknown step');
   }
@@ -125,14 +116,14 @@ export default function Booking() {
                     Back
                   </Button>
                 )}
-
-                <Button
+              {activeStep === steps.length - 1 ? '' : <Button
                   variant="contained"
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}             
                 >
-                  {activeStep === steps.length - 1 ? 'Book' : 'Next'}
-                </Button>
+                 Next
+                </Button>}
+                
               </Box>
             </React.Fragment>
           )}
