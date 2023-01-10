@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import { useParams } from 'react-router';
+import { useParams,useEffect } from 'react-router';
 import Axios, * as others from 'axios';
 const details = [
   {
@@ -30,27 +30,33 @@ export default function Review({type}) {
   const [lastName, setLastName]=React.useState('');
   const [discount, setDiscount] = React.useState(0);
   const [passengertype, setPassengertype] = React.useState('');
-  const [price, setPrice] = React.useState(100);  
+  const [price, setPrice] = React.useState(100);
 
-  Axios.post('http://localhost:3001/findPassengerDe', {
-    passengerID:id
-   }).then((response) => { 
-    setFirstName(response.data[0].first_name);
-    setLastName(response.data[0].last_name);         
-  });
+  
+    if (id!=="guest"){
+      Axios.post('http://localhost:3001/findPassengerDe', {
+        passengerID:id
+       }).then((response) => { 
+        if (response.data[0].first_name !== firstName) {
+          setFirstName(response.data[0].first_name);
+          setLastName(response.data[0].last_name);   } 
+  
+              
+      });
+      Axios.post('http://localhost:3001/passengerType', {
+        passengerID:id
+       }).then((response) => { 
+        setDiscount(response.data[0].discount);
+        setPassengertype(response.data[0].Type);    
+      });
+    }else{
+      setPassengertype("Guest");
+    }
+
+ 
 
 
-  if (id!="guest"){ 
-    Axios.post('http://localhost:3001/passengerType', {
-      passengerID:id
-     }).then((response) => { 
-      setDiscount(response.data[0].discount);
-      setPassengertype(response.data[0].Type);    
-    });
-
-  }else{
-    setPassengertype("Guest");
-  }
+ 
  
   return (
     <React.Fragment>
