@@ -57,11 +57,11 @@ DELIMITER $$
 CREATE FUNCTION seat_price_cal (p_schedule_ID varchar(15), p_seat_ID varchar(15), p_passenger_ID varchar(15), p_class_type varchar(5))
     RETURNS numeric(5,2) DETERMINISTIC
 BEGIN
-    DECLARE v_seat_price numeric(5,2);
+    DECLARE v_seat_price numeric(10,2);
     DECLARE v_flight_ID varchar(15);
-    DECLARE v_flight_price numeric(5,2);
+    DECLARE v_flight_price numeric(10,2);
     DECLARE v_user_type int;
-    DECLARE v_discount numeric(5,2);
+    DECLARE v_discount numeric(10,2);
 
     SELECT flight_ID INTO v_flight_ID 
     FROM flight_schedule 
