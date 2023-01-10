@@ -21,9 +21,22 @@ const MenuProps = {
     },
   };
 export default function PaymentForm({callback}) {
+
+  function getSeatNumber(row, column) {
+    const columns = ['A', 'B', 'C', 'D', 'E', 'F'];
+    if (!columns.includes(column)) {
+        throw new Error(`Invalid column: ${column}`);
+    }
+    if (row < 1 || row > 30) {
+        throw new Error(`Invalid row: ${row}`);
+    }
+    return (row - 1) * 6 + columns.indexOf(column) + 1;
+  }
+
     const [type, setType] = React.useState('');
     const [column, setColumn] = React.useState('');
-    const [row, setRow] = React.useState('');
+    const [row, setRow] = React.useState();
+    const [seatID, setSeatID] = React.useState(0);
   const handleChange1 = (event) => {
     setType(event.target.value);
     callback(event.target.value);   
@@ -31,9 +44,11 @@ export default function PaymentForm({callback}) {
   };
   const handleChange2 = (event) => {
     setColumn(event.target.value);
+    setSeatID(getSeatNumber(row,event.target.value));
   };
   const handleChange3 = (event) => {
     setRow(event.target.value);
+    setSeatID(getSeatNumber(event.target.value,column));
   };
 
   
@@ -170,9 +185,33 @@ export default function PaymentForm({callback}) {
         labelId="demo-select-small"
         id="demo-select-small"
         value={column}
-        MenuProps = {MenuProps}
+        
         label="Column"
         onChange={handleChange2}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={'A'}>A</MenuItem>
+        <MenuItem value={'B'}>B</MenuItem>
+        <MenuItem value={'C'}>C</MenuItem>
+        <MenuItem value={'D'}>D</MenuItem>
+        <MenuItem value={'E'}>E</MenuItem>
+        <MenuItem value={'F'}>F</MenuItem>
+      </Select>
+    </FormControl>
+    </Grid>
+
+    <Grid item xs={12} md={4}>
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <InputLabel id="demo-select-small">Row</InputLabel>
+      <Select
+        labelId="demo-select-small"
+        id="demo-select-small"
+        value={row}
+        MenuProps = {MenuProps}
+        label="Row"
+        onChange={handleChange3}
       >
         <MenuItem value="">
           <em>None</em>
@@ -207,36 +246,15 @@ export default function PaymentForm({callback}) {
         <MenuItem value={28}>28</MenuItem>
         <MenuItem value={29}>29</MenuItem>
         <MenuItem value={30}>30</MenuItem>
-      </Select>
-    </FormControl>
-    </Grid>
-
-    <Grid item xs={12} md={4}>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="demo-select-small">Row</InputLabel>
-      <Select
-        labelId="demo-select-small"
-        id="demo-select-small"
-        value={row}
-        label="Row"
-        onChange={handleChange3}
-      >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={'A'}>A</MenuItem>
-        <MenuItem value={'B'}>B</MenuItem>
-        <MenuItem value={'C'}>C</MenuItem>
-        <MenuItem value={'D'}>D</MenuItem>
-        <MenuItem value={'E'}>E</MenuItem>
-        <MenuItem value={'F'}>F</MenuItem>
+       
       </Select>
     </FormControl>
     </Grid>
 
       </Grid>
       <Typography marginTop={4} variant="h6" gutterBottom>
-        ---------------------------------------------------------------------------------------------------------------------
+      
+        ---------------------------------------------------{seatID}------------------------------------------------------------------
       </Typography>
       </div>
 

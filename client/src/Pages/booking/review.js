@@ -6,6 +6,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router';
 import Axios, * as others from 'axios';
+import { Button,Box } from '@mui/material';
+
+
 const details = [
   {
     name: 'passenger 1',
@@ -17,6 +20,13 @@ const details = [
 
 
 export default function Review({type}) {
+
+  const [isShown1, setIsShown1] = React.useState(false);
+  const [isShown2, setIsShown2] = React.useState(true);
+  const handleNext = () => {
+      setIsShown1(true);
+      setIsShown2(false);
+  };
 
   const { id, flight, from, to , departure, schedule, airplane} = useParams();
   const flightdetails = [
@@ -103,6 +113,37 @@ export default function Review({type}) {
           </Grid>
         </Grid>
       </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+      {isShown2 && <Button onClick={handleNext}
+              sx={{
+                width: 300, 
+                padding: 1, 
+                margin: 2,
+                borderRadius: '50px',
+                fontFamily: 'Arial',
+                ':hover': {
+                    backgroundColor: '#87CEEB',
+                    color: 'black'
+                }
+              }}
+              color="info"
+              size="large"
+              variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+              Book
+            </Button>}
+            </Box>
+            
+              {isShown1 &&  <>
+
+              <Box m={2} pt={3}></Box>
+              <Typography variant="h5" gutterBottom>
+                <center>Your booking is successfully completed ! We'll see you in the flight.</center>
+              </Typography>
+              <Typography variant="subtitle1">
+                <center>Thank you for your faith on us! We are looking forward to serve you at our best.</center>
+              </Typography>
+            </>}
+            
     </React.Fragment>
   );
 }
