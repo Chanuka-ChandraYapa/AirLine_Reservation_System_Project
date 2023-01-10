@@ -42,7 +42,7 @@ export default function PaymentForm({callback}) {
   const [passport, setPassport]=React.useState('');
   const [birthday, setBirthday]=React.useState('');
 
-  const { id, flight, from, to , departure} = useParams();
+  const { id, flight, from, to , departure, schedule, airplane} = useParams();
   if (id!="guest"){   
     console.log(id);
     Axios.post('http://localhost:3001/findPassengerDe', {

@@ -123,12 +123,12 @@ export default function Search() {
   
 
   let navigate = useNavigate(); 
-  function onNavigateBooking(flight,departure) {
+  function onNavigateBooking(flight,departure,schedule,airplane) {
     if(id !== 'guest'){
-    navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure );
+    navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure + '/'+ schedule + '/'+airplane);
     }
     else{
-    navigate('/GuestBooking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure );
+    navigate('/GuestBooking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure + '/' + schedule+ '/'+airplane);
     }
   }
   // + JSON.stringify(params)
@@ -233,7 +233,7 @@ export default function Search() {
               <StyledTableCell align="right">{to_airport}</StyledTableCell>
               <StyledTableCell align="right">{row.starting_time}</StyledTableCell>
               <StyledTableCell align="right">{row.stopping_time}</StyledTableCell>
-              <StyledTableCell align="right"><Button variant="outlined" onClick={() => onNavigateBooking(row.flight_ID,row.starting_time)}>Book</Button></StyledTableCell>
+              <StyledTableCell align="right"><Button variant="outlined" onClick={() => onNavigateBooking(row.flight_ID,row.starting_time,row.schedule_ID,row.airplane_ID)}>Book</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
