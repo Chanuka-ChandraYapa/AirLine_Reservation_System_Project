@@ -1,6 +1,10 @@
 import './team.css'
-import Member1 from './aravinda.jpg';
-import image from "./team.jpg";
+import Member1 from './1.png';
+import Member2 from './2.png';
+import Member3 from './3.png';
+import Member4 from './4.png';
+import Member5 from './5.png';
+
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -29,11 +33,8 @@ export default function Model1() {
           <div className="member">
             <img width={400} height={400} src={Member1}/>
             <div className="description">
-                <h1>H.W.K Aravinda</h1>
-                <h2>CEO</h2>
-                <p>
-                One and Only project saviour
-                </p>
+                <h1>Lauren Davis</h1>
+                     
                 <div className="social-media">
                   <LinkedInIcon />
                   <GitHubIcon />
@@ -42,10 +43,9 @@ export default function Model1() {
           </div>
 
           <div className="member">
-            <img width={400} height={400} src={Member1}/>
+            <img width={400} height={400} src={Member2}/>
             <div className="description">
-                <h1>Chanuka Lakshan</h1>
-                <h2>200742E</h2>
+                <h1>John Smith</h1>             
                 
                 <div className="social-media">
                   <LinkedInIcon />
@@ -55,10 +55,10 @@ export default function Model1() {
           </div>
 
           <div className="member">
-            <img width={400} height={400} src={Member1}/>
+            <img width={400} height={400} src={Member3}/>
             <div className="description">
-                <h1>Nadun Sanjeevana</h1>
-                <h2>200746U</h2>
+                <h1>Emily Williams</h1>
+              
                 
                 <div className="social-media">
                   <LinkedInIcon />
@@ -68,10 +68,10 @@ export default function Model1() {
           </div>
 
           <div className="member">
-            <img width={400} height={400} src={Member1}/>
+            <img width={400} height={400} src={Member4}/>
             <div className="description">
-                <h1>Tharindu Madhusanka</h1>
-                <h2>200735K</h2>
+                <h1>Sarah Johnson</h1>
+              
                
                 <div className="social-media">
                   <LinkedInIcon />
@@ -81,10 +81,10 @@ export default function Model1() {
           </div>
 
           <div className="member">
-            <img width={400} height={400} src={Member1}/>
+            <img width={400} height={400} src={Member5}/>
             <div className="description">
-                <h1>Nadeesha Pabasara</h1>
-                <h2>Unknown</h2>
+                <h1>David Chen</h1>
+             
                 
                 <div className="social-media">
                   <LinkedInIcon />

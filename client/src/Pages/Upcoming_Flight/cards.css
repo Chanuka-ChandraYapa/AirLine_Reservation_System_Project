@@ -98,14 +98,14 @@ html, .body {
   background-image: url(https://i.pinimg.com/736x/c2/f9/e7/c2f9e70d7baa16ed414261c20fa4bdf8.jpg);
 }
 .card:nth-child(5):before {
-    background-image: url(https://i0.wp.com/www.independent.lk/wp-content/uploads/Stunning_View_at_Lotus_Tower_Colombo-1024x683-1.png?w=1024&ssl=1);
+    background-image: url(https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80);
     background-position: center;
 }
   .card:nth-child(6):before {
     background-image: url(https://img.freepik.com/premium-photo/view-mumbai-showing-bandra-worli-sea-link-center-passing-mahim-bay-with-city-around-it_469504-8.jpg?w=2000);
   }
   .card:nth-child(7):before {
-    background-image: url(https://i0.wp.com/www.independent.lk/wp-content/uploads/Stunning_View_at_Lotus_Tower_Colombo-1024x683-1.png?w=1024&ssl=1);
+    background-image: url(https://wallpapercave.com/wp/wp4118207.jpg);
     background-position: center;
 }
   .card:nth-child(8):before {

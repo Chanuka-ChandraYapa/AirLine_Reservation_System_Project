@@ -40,20 +40,22 @@ function Main() {
     return (
     <main>
 
-    <Paper elevation={24}
-      sx={{
+<Paper elevation={24} style={{
         position: "relative",
         backgroundColor: 'grey.900',
         color: '#fff',
-        mb: 4,
+        marginBottom: '4px',
         backgroundSize: 'cover',
-        backgroundRepeat:'repeat',
+        backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${images[currentIndex]})`,
-        width: 'auto',
-        height: 900,
-      }}
-    >
+        width: '100%',
+        height: '900px',
+        borderRadius: '20px',
+        boxShadow: '10px 10px 20px #000',
+        overflow: 'hidden',
+}}>
+
       {/* Increase the priority of the hero background image */}
       
       <Box
@@ -105,7 +107,10 @@ function Main() {
         <Grid item xs={12} sm={3}>
           <Typography align='right' >
             <Button 
-                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    sx={{ width: 300, padding: 1, margin: 2 ,':hover': {
+                      backgroundColor: '#87CEEB',
+                      color: 'black'
+                  }, borderRadius: '50px'}}
                     color="info"
                     size='large'
                     variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
@@ -141,7 +146,10 @@ function Main() {
             <Grid item xs={12} sm={3}>
           <Typography align='left'>
             <Button 
-                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    sx={{ width: 300, padding: 1, margin: 2, ':hover': {
+                      backgroundColor: '#87CEEB',
+                      color: 'black'
+                  }, borderRadius: '50px' }}
                     color="info"
                     size="large"
                     variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}
@@ -156,7 +164,10 @@ function Main() {
             <Grid item xs={12} sm={3}>
           <Typography align='left'>
             <Button 
-                    sx={{ width: 300, padding: 1, margin: 2 }}
+                    sx={{ width: 300, padding: 1, margin: 2,':hover': {
+                      backgroundColor: '#87CEEB',
+                      color: 'black'
+                  }, borderRadius: '50px' }}
                     color="info"
                     size="large"
                     variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}

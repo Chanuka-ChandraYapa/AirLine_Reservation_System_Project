@@ -33,7 +33,7 @@ function UpcomingFlights() {
       <div class="content">
         <h2 class="title">DPS - DEL</h2>
         <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-        <button class="btn" onclick = "document.location='https://www.youtube.com/watch?v=Ke90Tje7VS0'">Book Now</button>
+        <button class="btn">Book Now</button>
       </div>
     </div>
     <div class="card">
