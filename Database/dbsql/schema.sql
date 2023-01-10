@@ -52,6 +52,7 @@ create table flight
     origin			varchar(15),
     destination		varchar(15),
     duration		time,
+    flight_price    numeric(10,2),
     primary key(flight_ID),
     foreign key(origin) references airport(airport_code)ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(destination) references airport(airport_code)ON DELETE CASCADE ON UPDATE CASCADE
