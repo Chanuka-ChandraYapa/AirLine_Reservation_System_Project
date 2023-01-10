@@ -495,7 +495,35 @@ export function Booking(){
 }
 
 export  function PastFlight() {  
+
+  const exportPDF = () => {
+    const unit = "pt";
+    const size = "A4"; // Use A1, A2, A3 or A4
+    const orientation = "portrait"; // portrait or landscape
   
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+  
+    doc.setFontSize(15);
+  
+    const title = "Passenger details of the Flight: " ;
+    const headers = [["Passenger ID", "First Name","Last Name", "Passport Number"]];
+  
+    const data = PastFlight_List.map(elt=> [elt.passenger_ID, elt.first_name, elt.last_name, elt.passport_number]);
+  
+    let content = {
+      startY: 50,
+      head: headers,
+      body: data
+    };
+  
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save("passenger_report.pdf")
+  }
+  
+  const [isShown4, setIsShown4] = useState(false); 
+
   const [origin, setOrigin] = React.useState('');
   const handleChange3 = (event) => {
     setOrigin(event.target.value);
@@ -506,7 +534,7 @@ export  function PastFlight() {
     setDest(event.target.value);
   };
 
-  const PastFlight_List=[];
+  const [PastFlight_List,setPastFlight_List] = React.useState([]);
   const [PassengerCount,setCountPassengers]=React.useState(0);
 
   const pastFlights=()=>{  
@@ -516,9 +544,7 @@ export  function PastFlight() {
         dest:dest
       }
      }).then((response)=>{
-      for (const passenger of response.data) {
-        PastFlight_List.push(passenger);
-      }         
+      setPastFlight_List(response.data)       
       })
 
       Axios.get('http://localhost:3001/passengerCount',{
@@ -530,6 +556,7 @@ export  function PastFlight() {
           setCountPassengers(response.data[0].Passenger_Count)
                       
         })
+        setIsShown4(true);
   }
 
 
@@ -605,6 +632,43 @@ export  function PastFlight() {
               Search
             </Button>
           </Box>
+          <Box
+          sx={{
+            marginTop: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+            {isShown4 && (
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                {PassengerCount}
+                <TableRow>
+                  <TableCell>Flight ID</TableCell>
+                  <TableCell align="right">Starting Time</TableCell>
+                  <TableCell align="right">Starting Date</TableCell>
+                 
+
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {PastFlight_List.map((val, key) => (
+                  <TableRow
+                    key={key}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row"> {val.flight_ID} </TableCell>
+                    <TableCell align="right"> {val.starting_time} </TableCell>
+                    <TableCell align="right">{val.starting_date}</TableCell>
+                    
+                    
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            )}
+              </Box>
         </Box>
        
     

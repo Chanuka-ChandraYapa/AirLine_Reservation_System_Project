@@ -22,7 +22,7 @@ import Image from './Avatar.jpeg';
 import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Passenger,CountPassenger, Booking, Revenue } from '../../Summary_Page/summary';
+import { Passenger,CountPassenger, Booking, Revenue, PastFlight } from '../../Summary_Page/summary';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
@@ -196,7 +196,25 @@ function NavBar() {
                   </Box>
                     </Fade>
                   </Modal>
-                <MenuItem onClick={handleClose}>Details about Past Flights,Given origin and destination</MenuItem>
+                <MenuItem onClick={handleOpen4}>Details about Past Flights,Given origin and destination</MenuItem>
+                <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  open={open4}
+                  onClose={handleClose4}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={open4}>
+                  <Box sx={style}>
+                    <PastFlight/>
+                    
+                  </Box>
+                    </Fade>
+                  </Modal>
                 <MenuItem onClick={handleOpen5}>Total Revenue given Aircraft Type</MenuItem>
                 <Modal
                   aria-labelledby="transition-modal-title"
