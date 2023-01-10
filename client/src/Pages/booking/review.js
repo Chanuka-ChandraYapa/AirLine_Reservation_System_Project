@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import { useParams,useEffect } from 'react-router';
+import { useParams } from 'react-router';
 import Axios, * as others from 'axios';
 const details = [
   {
@@ -18,7 +18,7 @@ const details = [
 
 export default function Review({type}) {
 
-  const { id,flight, from, to , departure} = useParams();
+  const { id, flight, from, to , departure, schedule, airplane} = useParams();
   const flightdetails = [
     { name: 'Flight', detail: flight},
     { name: 'From', detail: from },
@@ -33,7 +33,7 @@ export default function Review({type}) {
   const [price, setPrice] = React.useState(100);
 
  
-    if (id!=="guest"){
+    if (id!=="guest"){    
       Axios.post('http://localhost:3001/findPassengerDe', {
         passengerID:id
        }).then((response) => { 
@@ -52,7 +52,7 @@ export default function Review({type}) {
     }else{
       setPassengertype("Guest");
     }
-
+    
  
 
 
