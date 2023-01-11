@@ -30,13 +30,14 @@ const steps = ['General Information', 'Passenger Information', 'Payment Details'
 
 function GetStepContent(step) {
   const [type,setType] = React.useState('');
+  const [seatID,setSeatID]= React.useState(0);
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm callback={setType}/>;
+      return <PaymentForm callback={setType} seat = {setSeatID}/>;
     case 2:
-      return <Review type={type}/>;
+      return <Review type={type} seatID = {seatID}/>;
     default:
       throw new Error('Unknown step');
   }

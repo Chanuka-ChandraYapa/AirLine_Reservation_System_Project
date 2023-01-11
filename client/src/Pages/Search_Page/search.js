@@ -125,10 +125,10 @@ export default function Search() {
   let navigate = useNavigate(); 
   function onNavigateBooking(flight,departure,schedule,airplane) {
     if(id !== 'guest'){
-    navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure + '/'+ schedule + '/'+airplane);
+    navigate('/Booking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+booking_date + '/' + departure + '/'+ schedule + '/'+airplane);
     }
     else{
-    navigate('/GuestBooking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+departure + '/' + schedule+ '/'+airplane);
+    navigate('/GuestBooking/'+ id + '/' + flight+ '/' + params.from+'/'+params.to +'/'+booking_date + '/'+departure + '/' + schedule+ '/'+airplane);
     }
   }
   // + JSON.stringify(params)

@@ -31,8 +31,8 @@ export default function HomePage() {
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
-        <Route path="/Booking/:id/:flight/:from/:to/:departure/:schedule/:airplane" element={<UserBooking/>}/>
-        <Route path="/GuestBooking/:id/:flight/:from/:to/:departure/:schedule/:airplane" element={<GuestBooking/>}/>
+        <Route path="/Booking/:id/:flight/:from/:to/:booking_date/:departure/:schedule/:airplane" element={<UserBooking/>}/>
+        <Route path="/GuestBooking/:id/:flight/:from/:to/:booking_date/:departure/:schedule/:airplane" element={<GuestBooking/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest/:id" element={<GuestHome/>} />
         <Route path="/Admin" element={<AdminHome/>} />

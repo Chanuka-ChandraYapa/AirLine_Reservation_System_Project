@@ -21,7 +21,7 @@ export default function AddressForm() {
     const [passengerID, setPassengerID]=React.useState('10001');
 
 
-    const { id, flight, from, to , departure,schedule, airplane} = useParams();
+    const { id, flight, from, to ,booking_date, departure,schedule, airplane} = useParams();
 
     if (id!="guest"){
       Axios.post('http://localhost:3001/findDetails', {

@@ -20,7 +20,7 @@ const MenuProps = {
       },
     },
   };
-export default function PaymentForm({callback}) {
+export default function PaymentForm({callback, seat}) {
 
   function getSeatNumber(row, column) {
     const columns = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -45,10 +45,12 @@ export default function PaymentForm({callback}) {
   const handleChange2 = (event) => {
     setColumn(event.target.value);
     setSeatID(getSeatNumber(row,event.target.value));
+    seat(getSeatNumber(row,event.target.value));
   };
   const handleChange3 = (event) => {
     setRow(event.target.value);
     setSeatID(getSeatNumber(event.target.value,column));
+    seat(getSeatNumber(event.target.value,column));
   };
 
   
@@ -57,7 +59,7 @@ export default function PaymentForm({callback}) {
   const [passport, setPassport]=React.useState('');
   const [birthday, setBirthday]=React.useState('');
 
-  const { id, flight, from, to , departure, schedule, airplane} = useParams();
+  const { id, flight, from, to ,booking_date, departure, schedule, airplane} = useParams();
   if (id!="guest"){   
     console.log(id);
     Axios.post('http://localhost:3001/findPassengerDe', {

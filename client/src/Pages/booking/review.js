@@ -20,7 +20,7 @@ const details = [
 ];
 
 
-export default function Review({type}) {
+export default function Review({type,seatID}) {
 
   const [isShown1, setIsShown1] = React.useState(false);
   const [isShown2, setIsShown2] = React.useState(true);
@@ -29,7 +29,7 @@ export default function Review({type}) {
       setIsShown2(false);
   };
 
-  const { id, flight, from, to , departure, schedule, airplane} = useParams();
+  const { id, flight, from, to , booking_date, departure, schedule, airplane} = useParams();
   const flightdetails = [
     { name: 'Flight', detail: flight},
     { name: 'From', detail: from },
