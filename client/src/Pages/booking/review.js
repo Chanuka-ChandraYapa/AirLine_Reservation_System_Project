@@ -43,14 +43,14 @@ export default function Review({type}) {
   const [price, setPrice] = React.useState(100);
 
  
-    if (id!=="guest"){    
+    if (!isNaN(parseInt(id))){    
       Axios.post('http://localhost:3001/findPassengerDe', {
         passengerID:id
        }).then((response) => { 
         if (response.data[0].first_name !== firstName) {
           setFirstName(response.data[0].first_name);
           setLastName(response.data[0].last_name);   } 
-  
+          console.log(!isNaN(parseInt(id)));
               
       });
       Axios.post('http://localhost:3001/passengerType', {
