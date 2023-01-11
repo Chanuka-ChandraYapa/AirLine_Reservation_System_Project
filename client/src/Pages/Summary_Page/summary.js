@@ -212,9 +212,10 @@ export function CountPassenger(){
         endDate1:endDate1
       }
      }).then((response)=>{
-          setPassengerCount(response.data.Count);                      
+          setPassengerCount(response.data[0].Count);               
       })
       setIsShown2(true);
+      console.log(startDate1,endDate1);
   }
 
   const handleSubmit = (event) => {
