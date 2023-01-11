@@ -10,6 +10,7 @@ const db=mysql.createConnection({
 });
 
 router.post('/', (req, res) => {    
+  console.log(req.body.date)
     db.query("call airline_reservation_system_2.insert_flight_schedule('"+req.body.flight+"', '"+req.body.airplane+"', '"+req.body.time+"', '"+req.body.date+"');", (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));

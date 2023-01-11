@@ -81,7 +81,7 @@ export default function AddFlight() {
     const [origin,setOrigin]=useState("");
     const [destination,setDestination]=useState("");
     const [duration,setDuration]=useState("");
-    const [adder,setAdder]=useState("");
+    let [adder,setAdder]=useState("");
 
     const giveflight = (event) =>{
       Axios.post('http://localhost:3001/flightDetails', {   
@@ -101,8 +101,7 @@ export default function AddFlight() {
         
         setOrigin(response.data[0].origin);
         setDestination(response.data[0].destination);
-        setDuration(response.data[0].duration);
-        console.log(response);     
+        setDuration(response.data[0].duration);   
     });
 
       Axios.post('http://localhost:3001/addSchedule', {   
@@ -110,8 +109,15 @@ export default function AddFlight() {
       airplane:airplane,
       time:time,
       date:date   
-       }).then((response) => {       
-        setAdder("Flight Schedule is successfully added!");
+       }).then((response) => {    
+          if (response.data[0][0].Added==="Flight schedule can not be assigned"){
+            setAdder("This airplane can not be assigned to this schedule!");
+            
+          }else{
+            setAdder("Flight Schedule is successfully added!");         
+          }
+       
+          
     });
     }
     

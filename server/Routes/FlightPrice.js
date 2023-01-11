@@ -9,8 +9,8 @@ const db=mysql.createConnection({
     database: 'airline_reservation_system_2',
 });
 
-router.post('/', (req, res) => {    
-    db.query('select passenger_ID from register_user where username="'+req.body.username+'"', (error, results) => {
+router.post('/', (req, res) => {   
+    db.query("select flight_price from flight where flight_ID='"+req.body.flight_ID+"'", (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));
     });

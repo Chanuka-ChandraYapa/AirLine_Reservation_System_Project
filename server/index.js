@@ -31,6 +31,7 @@ const getFindPassengerType=require('./Routes/PasssengerType');
 const getFingPassengerDetails=require('./Routes/FindDetailsOfPassengers');
 const getBookingSeat=require('./Routes/BookingSeatDatabase');
 const getLastGuestPassenger=require('./Routes/LastGuestPassenger');
+const getFlightPrice=require('./Routes/FlightPrice');
 
 
 app.use('/create',signInRoute);
@@ -59,6 +60,7 @@ app.use('/passengerType',getFindPassengerType);
 app.use('/findPassengerDe',getFingPassengerDetails);
 app.use('/bookingSeat',getBookingSeat);
 app.use('/lastPassenger',getLastGuestPassenger);
+app.use('/flightPrice',getFlightPrice);
 
 app.listen(3001,()=>{
     console.log("Runnig the port 3001");

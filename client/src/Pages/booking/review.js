@@ -41,9 +41,18 @@ export default function Review({type,seatID}) {
   const [lastName, setLastName]=React.useState('');
   const [discount, setDiscount] = React.useState(0);
   const [passengertype, setPassengertype] = React.useState('');
-  const [price, setPrice] = React.useState(100);
+  const [price, setPrice] = React.useState(0.00);
   const [passengerid,setPassengerid]=React.useState(0);
+  const [bookStatus,setBookStatus]=React.useState('');
 
+  Axios.post('http://localhost:3001/flightPrice', {
+    flight_ID:flight
+   }).then((response) => { 
+    if (response.data[0].flight_price !== price) {
+      console.log()
+        setPrice(response.data[0].flight_price);
+      } 
+    });
  
     if (id!=="guest"){    
       Axios.post('http://localhost:3001/findPassengerDe', {
@@ -67,12 +76,34 @@ export default function Review({type,seatID}) {
       fetch('http://localhost:3001/lastPassenger').then(response => response.json()).then(response1 => {        
           setFirstName(response1[0].first_name);
           setLastName(response1[0].last_name);
+          setPassengerid(response1[0].passenger_ID);
           setDiscount(0);
           setPassengertype("Guest");
     });    
     }
   const SeatBooking=()=>{
-
+    Axios.post('http://localhost:3001/bookingSeat', {
+      passenger_ID:passengerid,
+      seat_ID:seatID,
+      date:booking_date,
+      schedule_ID:schedule,
+      price:price,
+      discount:price-discount * price
+     }).then((response) => { 
+      try{
+        if (response.data[1].affectedRows!==0){
+          handleNext();
+          setBookStatus("");
+        }else{
+          setBookStatus("That seat is already booked!");
+        }
+      }catch{
+          handleNext();
+          setBookStatus("");
+      }
+        
+        
+    });
   }
  
   return (
@@ -121,7 +152,7 @@ export default function Review({type,seatID}) {
         </Grid>
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-      {isShown2 && <Button onClick={handleNext}
+      {isShown2 && <Button onClick={SeatBooking}
               sx={{
                 width: 300, 
                 padding: 1, 
@@ -138,6 +169,8 @@ export default function Review({type,seatID}) {
               variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
               Book
             </Button>}
+
+            <h2>{bookStatus}</h2>
             </Box>
             
               {isShown1 &&  <>
