@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
 import Axios, * as others from 'axios';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 
 const MenuProps = {

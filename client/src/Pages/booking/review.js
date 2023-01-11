@@ -4,9 +4,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import Axios, * as others from 'axios';
 import { Button,Box } from '@mui/material';
+import { useState } from 'react';
 
 
 const details = [
@@ -41,16 +42,19 @@ export default function Review({type}) {
   const [discount, setDiscount] = React.useState(0);
   const [passengertype, setPassengertype] = React.useState('');
   const [price, setPrice] = React.useState(100);
+  const [passengerid,setPassengerid]=React.useState(0);
 
  
-    if (!isNaN(parseInt(id))){    
+    if (id!=="guest"){    
       Axios.post('http://localhost:3001/findPassengerDe', {
         passengerID:id
        }).then((response) => { 
         if (response.data[0].first_name !== firstName) {
+          setPassengerid(id);
           setFirstName(response.data[0].first_name);
-          setLastName(response.data[0].last_name);   } 
-          console.log(!isNaN(parseInt(id)));
+          setLastName(response.data[0].last_name);
+          } 
+
               
       });
       Axios.post('http://localhost:3001/passengerType', {
@@ -60,13 +64,16 @@ export default function Review({type}) {
         setPassengertype(response.data[0].Type);    
       });
     }else{
-      setPassengertype("Guest");
+      fetch('http://localhost:3001/lastPassenger').then(response => response.json()).then(response1 => {        
+          setFirstName(response1[0].first_name);
+          setLastName(response1[0].last_name);
+          setDiscount(0);
+          setPassengertype("Guest");
+    });    
     }
-    
- 
+  const SeatBooking=()=>{
 
-
- 
+  }
  
   return (
     <React.Fragment>
