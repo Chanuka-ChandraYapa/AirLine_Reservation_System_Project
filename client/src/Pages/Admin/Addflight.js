@@ -258,7 +258,8 @@ export default function AddFlight() {
             
           </Box>
         </Box>
-        <div style={{color: "red"}}><center>{adder}</center></div>
+        {adder === "Flight Schedule is successfully added!" ? <div style={{color: "green"}}><center>{adder}</center></div>: <div style={{color: "red"}}><center>{adder}</center></div>}
+        
       </Container>
     </ThemeProvider>
   );
