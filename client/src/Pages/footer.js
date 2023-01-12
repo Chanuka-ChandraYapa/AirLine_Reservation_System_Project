@@ -65,7 +65,7 @@ export default function StickyFooter() {
       <IconButton><FacebookIcon color="primary" fontSize="large"/></IconButton>
       <IconButton><InstagramIcon color="secondary" fontSize="large"/></IconButton>
       <IconButton><LinkedInIcon color="primary" fontSize="large"/></IconButton>
-      <IconButton><GitHubIcon fontSize="large"/></IconButton>
+      <IconButton onClick={()=>{window.location.href = 'https://github.com/Chanuka-ChandraYapa/AirLine_Reservation_System_Project'}}><GitHubIcon fontSize="large"/></IconButton>
       <IconButton><WhatsAppIcon color="success" fontSize="large"/></IconButton></center>
     </Box>
           <center><Copyright /></center>

@@ -258,7 +258,7 @@ export default function AddFlight() {
             
           </Box>
         </Box>
-        <h2>{adder}</h2>
+        <div style={{color: "red"}}><center>{adder}</center></div>
       </Container>
     </ThemeProvider>
   );

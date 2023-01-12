@@ -170,9 +170,8 @@ export default function Review({type,seatID}) {
               Book
             </Button>}
 
-            <h2>{bookStatus}</h2>
             </Box>
-            
+            <div style={{color: "red"}}><center>{bookStatus}</center></div>
               {isShown1 &&  <>
 
               <Box m={2} pt={3}></Box>

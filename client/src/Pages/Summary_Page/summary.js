@@ -510,7 +510,7 @@ export  function PastFlight() {
     const title = "Past details of the Flights from "+origin+" to " + dest ;
     const headers = [["Flight ID", "Starting Time","Starting Date", "Passenger Count"]];
   
-    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date, elt.passport_number]);
+    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date.substring(0,10), elt.passport_number]);
   
     let content = {
       startY: 50,
@@ -649,7 +649,7 @@ export  function PastFlight() {
             {isShown4 && (
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
-                {PassengerCount}
+                Total Passengers : {PassengerCount}
                 <TableRow>
                   <TableCell>Flight ID</TableCell>
                   <TableCell align="right">Starting Time</TableCell>
@@ -666,7 +666,7 @@ export  function PastFlight() {
                   >
                     <TableCell component="th" scope="row"> {val.flight_ID} </TableCell>
                     <TableCell align="right"> {val.starting_time} </TableCell>
-                    <TableCell align="right">{val.starting_date}</TableCell>
+                    <TableCell align="right">{val.starting_date.substring(0,10)}</TableCell>
                     
                     
                   </TableRow>
