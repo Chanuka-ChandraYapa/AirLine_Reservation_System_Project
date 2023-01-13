@@ -23,26 +23,26 @@ insert into guest values ('10004');
 insert into register_user values ('10001',3,'Male',0774562345,'1234, Main Street, Apartment 101','NewYork','USA','Liam_Max','hsdjfh%87*',90442,'01');
 insert into register_user values ('10002',6,'Male',0703826462,'Manvel, Texas, USA 77578','Texas','USA','Oliver_Rox','*&adfhkjah*',90273,'02');
 
-insert into seat values ('A380','00001',true,'01');
-insert into seat values ('A380','00002',true,'01');
-insert into seat values ('A380','00003',true,'01');
-insert into seat values ('A380','00004',true,'01');
-insert into seat values ('A380','00005',false,'01');
-insert into seat values ('A380','00006',false,'01');
-insert into seat values ('A380','00007',false,'01');
-insert into seat values ('A380','00008',false,'01');
-insert into seat values ('A380','00009',false,'01');
-insert into seat values ('A380','00010',false,'01');
-insert into seat values ('A380','00011',true,'02');
-insert into seat values ('A380','00012',true,'02');
-insert into seat values ('A380','00013',true,'02');
-insert into seat values ('A380','00014',true,'02');
-insert into seat values ('A380','00015',false,'02');
-insert into seat values ('A380','00016',false,'02');
-insert into seat values ('A380','00017',false,'02');
-insert into seat values ('A380','00018',false,'02');
-insert into seat values ('A380','00019',false,'02');
-insert into seat values ('A380','00020',false,'02');
+insert into seat values ('B737','00001',true,'01');
+insert into seat values ('B737','00002',true,'01');
+insert into seat values ('B737','00003',true,'01');
+insert into seat values ('B737','00004',true,'01');
+insert into seat values ('B737','00005',false,'01');
+insert into seat values ('B737','00006',false,'01');
+insert into seat values ('B737','00007',false,'01');
+insert into seat values ('B737','00008',false,'01');
+insert into seat values ('B737','00009',false,'01');
+insert into seat values ('B737','00010',false,'01');
+insert into seat values ('B757','00011',true,'02');
+insert into seat values ('B757','00012',true,'02');
+insert into seat values ('B757','00013',true,'02');
+insert into seat values ('B757','00014',true,'02');
+insert into seat values ('B757','00015',false,'02');
+insert into seat values ('B757','00016',false,'02');
+insert into seat values ('B757','00017',false,'02');
+insert into seat values ('B757','00018',false,'02');
+insert into seat values ('B757','00019',false,'02');
+insert into seat values ('B757','00020',false,'02');
 insert into seat values ('A380','00021',true,'03');
 insert into seat values ('A380','00022',true,'03');
 insert into seat values ('A380','00023',true,'03');
@@ -152,3 +152,17 @@ insert into flight_schedule values ('024','3345','08','15:00','2023-01-01','2023
 
 
 
+insert into booking values ("001",'00001',10000,'2023-01-01','001');
+insert into booking values ("005",'00028',10001,'2023-01-01','002');
+insert into booking values ("011",'00011',10002,'2023-01-01','005');
+insert into booking values ("017",'00021',10003,'2023-01-01','004');
+insert into booking values ("021",'00017',10004,'2023-01-01','003');
+
+
+
+INSERT INTO `airline_reservation_system_2`.`guest` (`passenger_ID`) VALUES ('10000');
+INSERT INTO `airline_reservation_system_2`.`guest` (`passenger_ID`) VALUES ('10003');
+INSERT INTO `airline_reservation_system_2`.`guest` (`passenger_ID`) VALUES ('10004');
+
+
+insert into staff values('1','1234','Nimal','Amara',98731,'hdsfkjh@gmail.com','2000-12-05','Male','Sri Lanka','Nimal');

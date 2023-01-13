@@ -26,7 +26,8 @@ import { Passenger,CountPassenger, Booking, Revenue, PastFlight } from '../../Su
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-
+import { useAuth } from '../../utils/auth';
+import { AuthProvider } from '../../utils/auth';
 
 const style = {
   position: 'absolute',
@@ -72,7 +73,11 @@ function NavBar() {
     setAnchorEl(null);
   };
 
-
+  const {user, setUser} = useAuth();
+  const handleLogout = () =>{
+      setUser(null);
+      navigate('/')
+  }
   return (
     <React.Fragment>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
@@ -94,7 +99,7 @@ function NavBar() {
             />
           </Typography>
           <Typography marginLeft="15px" variant="h8" color="inherit" noWrap sx={{ flexGrow: 1, color: "#5465FF" }}style={{ }}>
-            Logged in as an Admin
+            Logged in as an Admin 
           </Typography>
           <nav>
             
@@ -258,7 +263,7 @@ function NavBar() {
 
               
           </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={()=>{navigate("/");}}>
+          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={handleLogout}>
             Logout
           </Button>
           

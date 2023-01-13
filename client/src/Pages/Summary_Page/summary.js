@@ -558,19 +558,12 @@ export function PastFlight() {
     const doc = new jsPDF(orientation, unit, size);
 
     doc.setFontSize(15);
-
-    const title = "Past details of the Flights from " + origin + " to " + dest;
-    const headers = [
-      ["Flight ID", "Starting Time", "Starting Date", "Passenger Count"],
-    ];
-
-    const data = PastFlight_List.map((elt) => [
-      elt.flight_ID,
-      elt.starting_time,
-      elt.starting_date.substring(0, 10),
-      elt.passport_number,
-    ]);
-
+  
+    const title = "Past details of the Flights from "+origin+" to " + dest ;
+    const headers = [["Flight ID", "Starting Time","Starting Date", "Passenger Count"]];
+  
+    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date.substring(0,10), elt.passport_number]);
+  
     let content = {
       startY: 50,
       head: headers,

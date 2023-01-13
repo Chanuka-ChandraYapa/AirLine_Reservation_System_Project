@@ -87,6 +87,41 @@ BEGIN
 END $$ 
 DELIMITER ;
 
+/*============Function to find the age when given the birthday========*/
+
+DELIMITER $$
+CREATE  FUNCTION `get_age`(dob date) RETURNS int
+    DETERMINISTIC
+return (datediff(now(),dob))/365
+
+
+
+/*============Function to find stopping date when give starting date and starting time and duration==========*/
+
+DELIMITER $$
+CREATE FUNCTION `Stopping_date`(
+p_starting_date date,p_starting_time time
+) RETURNS time
+    READS SQL DATA
+BEGIN
+	declare 
+    Stopping_Time,Duration time;
+	SELECT duration INTO Duration FROM flight WHERE flight_schedule.flight_ID=flight.flight_ID;
+    set Stopping_Time=starting_time+duration;
+    return if (Stopping_Time>'24:00',starting_date+1,starting_date);
+END
+
+/*=============Function to find when stopping time when given starting date and starting time and duration=========*/
+
+DELIMITER $$
+CREATE  FUNCTION `Stopping_time`(starting_date date,starting_time time,duration time) RETURNS time
+    READS SQL DATA
+begin
+declare Stopping_Time time;
+set Stopping_Time=starting_time+duration;
+return if (Stopping_Time>'24:00',timediff(Stopping_Time,"24:00:00"),Stopping_Time);
+end
+
 
 
 

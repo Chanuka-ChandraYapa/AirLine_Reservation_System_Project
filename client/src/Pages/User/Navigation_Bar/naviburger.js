@@ -26,6 +26,7 @@ import { useParams } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import { useAuth } from '../../utils/auth';
 
 
 const style = {
@@ -42,7 +43,7 @@ const style = {
 
 function NavBar() {  
   
-  const { user, id} = useParams();
+  const { user1, id} = useParams();
   let navigate=useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -52,7 +53,10 @@ function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const {user, setUser} = useAuth();
+  const handleLogout = () =>{
+    setUser(null);
+    navigate('/')}
 
   return (
     <React.Fragment>
@@ -124,7 +128,7 @@ function NavBar() {
 
               
           </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={()=>{navigate("/");}}>
+          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={handleLogout}>
             LogOut
           </Button>
           

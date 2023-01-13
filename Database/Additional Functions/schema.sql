@@ -20,12 +20,11 @@ DROP TABLE IF EXISTS airport CASCADE;
 DROP TABLE IF EXISTS location CASCADE;
 
 /* 
-  _        _     _           
- | |      | |   | |          
- | |_ __ _| |__ | | ___  ___ 
- | __/ _` | '_ \| |/ _ \/ __|
- | || (_| | |_) | |  __/\__ \
-  \__\__,_|_.__/|_|\___||___/
+ ______  ___  ____  __     ____  __ 
+ | || | // \\ || )) ||    ||    (( \
+   ||   ||=|| ||=)  ||    ||==   \\ 
+   ||   || || ||_)) ||__| ||___ \_))
+                                    
  */
 
 
@@ -160,14 +159,28 @@ create table booking
     foreign key (payment_ID) references payment(payment_ID)ON DELETE CASCADE ON UPDATE CASCADE
     );
     
+CREATE TABLE Staff (
+  emp_id char(6) PRIMARY KEY, 
+  password varchar(255) NOT NULL,
+  first_name varchar(127) NOT NULL,
+  last_name varchar(127) NOT NULL,
+  contact_no varchar(15) NOT NULL,
+  email varchar(70) NOT NULL UNIQUE,
+  dob date NOT NULL,
+  gender varchar(200) NOT NULL,
+  country varchar(30) NOT NULL  
+);
+
+alter table staff
+add column username varchar(30);
+    
     
 /* 
-   __                  _   _                 
-  / _|                | | (_)                
- | |_ _   _ _ __   ___| |_ _  ___  _ __  ___ 
- |  _| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
- | | | |_| | | | | (__| |_| | (_) | | | \__ \
- |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/                              
+  ____ __ __ __  __   ___ ______ __   ___   __  __  __ 
+ ||    || || ||\ ||  //   | || | ||  // \\  ||\ || (( \
+ ||==  || || ||\\|| ((      ||   || ((   )) ||\\||  \\ 
+ ||    \\_// || \||  \\__   ||   ||  \\_//  || \|| \_))
+                                                                                 
  */
 
 
@@ -205,15 +218,15 @@ return (datediff(now(),dob))/365;
 
 
 
-USE `airline_reservation_system`;
+USE `airline_reservation_system_2`;
 DROP function IF EXISTS `Stopping_date`;
 
-USE `airline_reservation_system`;
+USE `airline_reservation_system_2`;
 DROP function IF EXISTS `airline_reservation_system`.`Stopping_date`;
 ;
 
 DELIMITER $$
-USE `airline_reservation_system`$$
+USE `airline_reservation_system_2`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `Stopping_date`(starting_date date,starting_time time,duration time) RETURNS date
     DETERMINISTIC
 begin

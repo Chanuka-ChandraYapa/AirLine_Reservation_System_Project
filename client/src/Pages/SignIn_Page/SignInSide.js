@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from 'axios';
 import {useState} from 'react';
+import { useAuth } from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const theme = createTheme();
@@ -31,7 +33,9 @@ export default function SignInSide() {
   const [name,setName]=useState("");
   const [password,setPassword]=useState("");
   const [wrong,setWrong]=useState("");
-  
+
+  const {user, setUser} = useAuth();
+  let navigate = useNavigate();
  const checkUser=()=>{
     Axios.post('http://localhost:3001/create',{
         name:name,
@@ -39,7 +43,9 @@ export default function SignInSide() {
             
             if (response.data.success){  
                 setName(response.data.result[0].passenger_ID);
-                window.location.href="/User/" + response.data.result[0].passenger_ID;  
+                setUser("User") ; 
+                navigate("/User/" + String(response.data.result[0].passenger_ID)) 
+                // window.location.href="/User/" + String(response.data.result[0].passenger_ID);  
             }
             else{
                 setWrong("*Password is wrong");

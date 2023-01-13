@@ -10,6 +10,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { IconButton } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { useAuth } from './utils/auth';
+import { useEffect } from 'react';
 
 function Copyright() {
   return (
@@ -25,6 +27,12 @@ function Copyright() {
 }
 
 export default function StickyFooter() {
+
+  const { user,setUser} = useAuth();
+
+  useEffect(() => {
+    console.log("auth updated to: "+user);
+  }, [user]);
   return (
     <Box
     

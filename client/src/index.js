@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './App.js';
+import { AuthProvider } from "./Pages/utils/auth";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(  
   <React.StrictMode>
+    
     <HomePage />
+
   </React.StrictMode> 
 );
 
