@@ -508,9 +508,9 @@ export  function PastFlight() {
     doc.setFontSize(15);
   
     const title = "Past details of the Flights from "+origin+" to " + dest ;
-    const headers = [["Flight ID", "Starting Time","Starting Date", "Passenger Count"]];
+    const headers = [["Flight ID", "Starting Time","Starting Date"]];
   
-    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date.substring(0,10), elt.passport_number]);
+    const data = PastFlight_List.map(elt=> [elt.flight_ID, elt.starting_time, elt.starting_date.substring(0,10)]);
   
     let content = {
       startY: 50,

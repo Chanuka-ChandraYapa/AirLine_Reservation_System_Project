@@ -15,18 +15,20 @@ import Footer from './Pages/footer';
 import Scroller from './Pages/scroll';
 import Home1 from './Pages/Home_Page/main'
 import Model1 from "./Pages/Team_Page/team";
-import ProtectedRoute from "./ProtectedRoute";
 import Home2 from "./Pages/Home_Page/main1";
 import SignInAdmin from "./Pages/Admin/SignInAdmin"
 import AddFlight from "./Pages/Admin/Addflight";
-
+import { AuthProvider } from "./Pages/utils/auth";
+import { RequireAuth, RequireUserAuth } from "./Pages/utils/RequireAuth";
 export default function HomePage() { 
+  
   return (
+    
     <div style={{
       backgroundColor: '#f9f9f9',
     }}>
+      <AuthProvider>
     <Router>
-      {/* <NavigationBar/>       */}
       <Routes>      
         <Route path="/" element={<Home/>}/>         
         <Route path="/SignIn" element={<SignIn/>}/>
@@ -35,12 +37,12 @@ export default function HomePage() {
         <Route path="/GuestBooking/:id/:flight/:from/:to/:booking_date/:departure/:schedule/:airplane" element={<GuestBooking/>}/>
         <Route path="*" element={<ErrorPage/>}/>
         <Route path="/Guest/:id" element={<GuestHome/>} />
-        <Route path="/Admin" element={<AdminHome/>} />
+        <Route path="/Admin" element={<RequireAuth><AdminHome/></RequireAuth>} />
         <Route path="/SignInAdmin" element={<SignInAdmin/>} />
-        <Route path="/User/:id" element={<UserHome/>} />
+        <Route path="/User/:id" element={<RequireUserAuth><UserHome/></RequireUserAuth>} />
         <Route path="/Guest/:id/GuestSearch" element={<GuestSearchPage/>} />
-        <Route path="/AdminAddFlight" element={<AdminAddFlight/>} />
-        <Route path="/User/:id/UserSearch" element={<UserSearchPage/>} />
+        <Route path="/AdminAddFlight" element={<RequireAuth><AdminAddFlight/></RequireAuth>} />
+        <Route path="/User/:id/UserSearch" element={<RequireUserAuth><UserSearchPage/></RequireUserAuth>} />
         <Route path="/About" element={<About/>}/>
         <Route path="/Guest/:id/GuestAbout" element={<GuestAbout/>}/>
         <Route path="/AdminAbout" element={<AdminAbout/>}/>
@@ -49,12 +51,13 @@ export default function HomePage() {
         <Route path="/Guest/:id/GuestTeam" element={<GuestTeam/>}/>
         <Route path="/AdminTeam" element={<AdminTeam/>}/>
         <Route path="/User/:id/UserTeam" element={<UserTeam/>}/>
-
       </Routes>
       <Scroller/>
       <Footer/>
     </Router>
+    </AuthProvider>
     </div>
+    
   );
 }
 
@@ -72,9 +75,11 @@ function GuestSearchPage(){
 function AdminAddFlight(){
   return(
     <>   
+    <AuthProvider>
     <NavigationBarAdmin/>
       <AddFlight/>   
       <UpcomingFlights />
+      </AuthProvider>
     </>
   )
 }

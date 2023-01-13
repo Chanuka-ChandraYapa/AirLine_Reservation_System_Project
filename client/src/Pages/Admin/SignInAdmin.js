@@ -14,7 +14,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from 'axios';
 import {useState} from 'react';
-
+import { useAuth } from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -33,6 +34,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+
+  let navigate=useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,20 +48,24 @@ export default function SignInSide() {
   const [name,setName]=useState("");
   const [password,setPassword]=useState("");
   const [wrong,setWrong]=useState("");
+  // const auth = useAuth();
+  const {user, setUser} = useAuth();
   
 
-
   const checkUser=()=>{
+
     Axios.post('http://localhost:3001/adminSignIn',{
         name:name,
         password:password}).then((response)=>{
-            if (response.data.success){                
-                window.location.href="/Admin";
+            if (response.data.success){
+                
+                setUser("Admin") ; 
+                navigate('/Admin')             ;
 
                 
             }
             else{
-                setWrong("*Password is wrong");
+                setWrong("*Password is wrong"); 
             }
         })
   }
