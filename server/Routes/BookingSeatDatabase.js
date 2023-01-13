@@ -10,7 +10,7 @@ const db=mysql.createConnection({
 });
 
 router.post('/', (req, res) => {
-    db.query("call airline_reservation_system_2.booking_seat("+req.body.passenger_ID+", '"+req.body.seat_ID+"', '"+req.body.date+"', '"+req.body.schedule_ID+"', "+req.body.price+", "+req.body.discount+");", (error, results) => {
+    db.query("call airline_reservation_system_2.booking_seat("+req.body.passenger_ID+", "+req.body.seat_ID+", '"+req.body.date+"', '"+req.body.schedule_ID+"', "+req.body.price+", "+req.body.discount+");", (error, results) => {
       if (error) throw error;
       res.send(JSON.stringify(results));
     });
