@@ -209,7 +209,8 @@ export function CountPassenger(){
     Axios.get('http://localhost:3001/numberOfPassengers',{
       params: {
         startDate1:startDate1,
-        endDate1:endDate1
+        endDate1:endDate1,
+        dest1:dest1
       }
      }).then((response)=>{
           setPassengerCount(response.data[0].Count);               

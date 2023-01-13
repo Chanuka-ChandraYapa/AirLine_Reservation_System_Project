@@ -88,7 +88,7 @@ export default function Review({type,seatID}) {
       date:booking_date,
       schedule_ID:schedule,
       price:price,
-      discount:price-discount * price
+      discount:(discount * price)
      }).then((response) => { 
       try{
         if (response.data[1].affectedRows!==0){
@@ -169,9 +169,9 @@ export default function Review({type,seatID}) {
               variant="outlined" href="#" style={{ color: 'inherit', textDecoration: 'inherit'}}>
               Book
             </Button>}
-
-            </Box>
             <div style={{color: "red"}}><center>{bookStatus}</center></div>
+            </Box>
+            
               {isShown1 &&  <>
 
               <Box m={2} pt={3}></Box>
