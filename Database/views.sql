@@ -73,7 +73,7 @@ CREATE VIEW user_flight_history AS
     WHERE b.date < NOW();
     
 
-/*------------------------------------------Most_Popular_Flights--------------------------*/
+/*------------------------------------------Most_Popular_Flights-------------------------*/
 
 CREATE VIEW popular_flights AS
     SELECT flight_ID, COUNT(payment_ID) as bookings
