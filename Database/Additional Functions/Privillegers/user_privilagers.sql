@@ -1,11 +1,3 @@
-/*
- __ __  __   ____ ____ 
- || || (( \ ||    || \\
- || ||  \\  ||==  ||_//
- \\_// \_)) ||___ || \\
-			
-*/
-
 /*=========================USER_ACCESS==========================================*/
 
 GRANT EXECUTE ON PROCEDURE airline_reservation_system_2.add_user TO 'database_app'@'localhost';

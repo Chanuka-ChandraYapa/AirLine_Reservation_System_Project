@@ -1,12 +1,3 @@
-/*
-	____   ____.__                     
-\   \ /   /|__| ______  _  ________
- \   Y   / |  |/ __ \ \/ \/ /  ___/
-  \     /  |  \  ___/\     /\___ \ 
-   \___/   |__|\___  >\/\_//____  >
-                   \/           \/ 
-                   
-*/
 DROP VIEW IF EXISTS view_airport;
 DROP VIEW IF EXISTS flight_schedule_view;
 DROP VIEW IF EXISTS passenger_flight_info_view;
@@ -85,4 +76,3 @@ CREATE VIEW popular_flights AS
     
     
     
-

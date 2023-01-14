@@ -19,15 +19,6 @@ DROP TABLE IF EXISTS flight CASCADE;
 DROP TABLE IF EXISTS airport CASCADE;
 DROP TABLE IF EXISTS location CASCADE;
 
-/* 
- ______  ___  ____  __     ____  __ 
- | || | // \\ || )) ||    ||    (( \
-   ||   ||=|| ||=)  ||    ||==   \\ 
-   ||   || || ||_)) ||__| ||___ \_))
-                                    
- */
-
-
 
 create table location
 	(location_ID		varchar(15),
@@ -175,15 +166,6 @@ alter table staff
 add column username varchar(30);
     
     
-/* 
-  ____ __ __ __  __   ___ ______ __   ___   __  __  __ 
- ||    || || ||\ ||  //   | || | ||  // \\  ||\ || (( \
- ||==  || || ||\\|| ((      ||   || ((   )) ||\\||  \\ 
- ||    \\_// || \||  \\__   ||   ||  \\_//  || \|| \_))
-                                                                                 
- */
-
-
 
 
 *DELIMITER //
