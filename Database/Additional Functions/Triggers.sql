@@ -17,7 +17,7 @@ BEGIN
   UPDATE register_user
 SET type_ID = (SELECT '01' FROM DUAL WHERE num_of_times_booked < 10
                UNION
-               SELECT '02' FROM DUAL WHERE num_of_times_booked >= 10 AND num_of_times_booked < 20)
+               SELECT '02' FROM DUAL WHERE num_of_times_booked >= 10 AND num_of_times_booked )
 WHERE passenger_ID = p_passenger_ID;
 END;
 
