@@ -725,6 +725,7 @@ export function PastFlight() {
                 <TableCell align="right">Starting Date</TableCell>
               </TableRow>
             </TableHead>
+            
             <TableBody>
               {PastFlight_List.map((val, key) => (
                 <TableRow
