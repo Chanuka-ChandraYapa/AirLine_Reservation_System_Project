@@ -37,7 +37,7 @@ DROP TRIGGER IF EXISTS flight_schedule_after_delete;
 
 DELIMITER $$
 CREATE TRIGGER booking_after_insert
-	AFTER update ON booking
+	AFTER insert ON booking
     FOR EACH ROW
 BEGIN
 	UPDATE register_user
