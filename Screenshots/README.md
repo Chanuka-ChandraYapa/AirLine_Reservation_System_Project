@@ -20,3 +20,6 @@
 | -------------------------------------------------------- | -------------------------------------------------------- |
 | ![Sign In Page](./Search_Flight.png)                       |   ![Sign Up Form](./Shedule_Flight_page.png)                               | 
 
+| **Past Flights Details**                                         |**Past Flight Details**                                                    |
+| -------------------------------------------------------- | -------------------------------------------------------- |
+| ![Sign In Page](./Past_Flight_Details.png)                       |   ![Sign Up Form](./past_flight_report.pdf)                               | 
