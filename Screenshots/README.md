@@ -1,7 +1,6 @@
 ## Screenshots
 
 | **Home Page**                                            ||
-| -------------------------------------------------------- |
 | ![Home Page](./Homepage.png)                             ||
 | **Flight Search Page**                                             |
 |![Flight Search Page](./Search_Flight.png)                         |
