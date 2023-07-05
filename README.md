@@ -1,5 +1,5 @@
 # AirLine_Reservation_System_Project
-A simple Airline Reservation System [Sample Screenshots](./Screenshots)
+A simple Airline Reservation System. [Sample Screenshots](./Screenshots)
 
 ## Project Description
 
