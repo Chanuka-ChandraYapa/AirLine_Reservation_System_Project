@@ -1,5 +1,6 @@
 # AirLine_Reservation_System_Project
 <img src="Screenshots/Homepage.png"/>
+
 A simple Airline Reservation System. [Sample Screenshots](./Screenshots)
 
 ## Project Description
